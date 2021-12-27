@@ -1,10 +1,10 @@
-package com.example.forestproject;
+package com.example.secretforest_project;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ForestProjectApplicationTests {
+class SecretForestProjectApplicationTests {
 
     @Test
     void contextLoads() {
