@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/report")
 @RequiredArgsConstructor
 @RestController
-public class AdminController {
+public class ReportController {
 
     private final AdminService adminService;
 
