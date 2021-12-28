@@ -23,8 +23,7 @@ public class CommentsEntity { // 댓글
     @Column(nullable = false)
     private String writer;
 
-    @Column(nullable = false)
-    @Size(min = 6, max = 20)
+    @Column(nullable = false, length = 20)
     private String pwd;
 
     @Column(nullable = false, length = 1)
