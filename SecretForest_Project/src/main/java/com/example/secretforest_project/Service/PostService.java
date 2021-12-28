@@ -2,6 +2,7 @@ package com.example.secretforest_project.Service;
 
 import com.example.secretforest_project.Dto.Request.PostRequest;
 import com.example.secretforest_project.Dto.Request.PostUpdateRequest;
+import com.example.secretforest_project.Dto.Request.PwdRequest;
 import com.example.secretforest_project.Entity.PostEntity;
 import com.example.secretforest_project.Entity.PostRepository;
 import com.example.secretforest_project.Exception.ConflictException;
@@ -59,12 +60,12 @@ public class PostService {
     }
 
     // 게시글 삭제
-    public void delpost(Long post_id, String pwd) {
+    public void delpost(Long post_id, PwdRequest pwdRequest) {
 
         PostEntity postEntity = postRepository.findById(post_id)
                 .orElseThrow(ConflictException::new);
 
-        if (!passwordEncoder.matches(pwd, postEntity.getPwd())) {
+        if (!passwordEncoder.matches(pwdRequest.getPwd(), postEntity.getPwd())) {
             // matches(비교할 비밀번호, db에 저장되어 있는 비밀번호)
             throw new ConflictException();
         }

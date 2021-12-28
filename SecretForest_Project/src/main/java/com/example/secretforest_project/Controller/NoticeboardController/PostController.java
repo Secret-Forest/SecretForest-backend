@@ -3,6 +3,7 @@ package com.example.secretforest_project.Controller.NoticeboardController;
 import com.example.secretforest_project.Dto.Request.CommentsRequest;
 import com.example.secretforest_project.Dto.Request.PostRequest;
 import com.example.secretforest_project.Dto.Request.PostUpdateRequest;
+import com.example.secretforest_project.Dto.Request.PwdRequest;
 import com.example.secretforest_project.Dto.Response.PostResponse;
 import com.example.secretforest_project.Service.CommentsService;
 import com.example.secretforest_project.Service.PostService;
@@ -42,8 +43,8 @@ public class PostController {
     @DeleteMapping
     @ResponseStatus(HttpStatus.OK) // 200 요청을 정상적으로 처리함
     public void DelPost(@PathVariable("postid") Long post_id,
-                           @Valid @RequestBody String pwd) {
-        postService.delpost(post_id, pwd);
+                        @Valid @RequestBody PwdRequest pwdRequest) {
+        postService.delpost(post_id, pwdRequest);
     }
 
     // 댓글 작성
