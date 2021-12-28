@@ -4,6 +4,7 @@ import com.example.secretforest_project.Dto.Response.CommentsListResponse;
 import com.example.secretforest_project.Dto.Response.PostListResponse;
 import com.example.secretforest_project.Service.AdminService;
 import com.example.secretforest_project.Service.CommentsService;
+import com.example.secretforest_project.Service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -15,16 +16,17 @@ public class ReportController {
 
     private final AdminService adminService;
     private final CommentsService commentsService;
+    private final PostService postService;
 
     // 게시글 신고
-    @PutMapping("/{postid}")
+    @PutMapping("post/{postid}")
     @ResponseStatus(HttpStatus.OK)
     public void ReportPost (@PathVariable("postid") Long post_id) {
-        commentsService.reportcomments(post_id);
+        postService.reportpost(post_id);
     }
 
     // 댓글 신고
-    @PutMapping("/{commentsid}")
+    @PutMapping("comments/{commentsid}")
     @ResponseStatus(HttpStatus.OK)
     public void ReportComments (@PathVariable("commentsid") Long comments_id) {
         commentsService.reportcomments(comments_id);
