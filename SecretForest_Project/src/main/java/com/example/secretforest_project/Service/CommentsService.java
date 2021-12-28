@@ -1,6 +1,7 @@
 package com.example.secretforest_project.Service;
 
 import com.example.secretforest_project.Dto.Request.CommentsRequest;
+import com.example.secretforest_project.Dto.Request.CommentsUpdateRequest;
 import com.example.secretforest_project.Entity.CommentsEntity;
 import com.example.secretforest_project.Entity.CommentsRepository;
 import com.example.secretforest_project.Entity.PostEntity;
@@ -54,12 +55,12 @@ public class CommentsService {
     }
 
     // 댓글 수정
-    public void updatecomments(String pwd, Long commentsid, CommentsRequest commentsRequest) {
+    public void updatecomments(Long commentsid, CommentsUpdateRequest commentsUpdateRequest) {
 
         CommentsEntity commentsEntity = commentsRepository.findById(commentsid)
                 .orElseThrow(NotFoundException::new);
 
-        if (!passwordEncoder.matches(pwd, commentsEntity.getPwd())) {
+        if (!passwordEncoder.matches(commentsUpdateRequest.getPwd(), commentsEntity.getPwd())) {
             // matches(비교할 비밀번호, db에 저장되어 있는 비밀번호)
             throw new ConflictException();
         }
@@ -68,7 +69,7 @@ public class CommentsService {
                 .id(commentsEntity.getId())
                 .comments_id(commentsEntity.getComments_id())
                 .writer(commentsEntity.getWriter())
-                .Comment(commentsRequest.getComment())
+                .Comment(commentsUpdateRequest.getComment())
                 .pwd(commentsEntity.getPwd())
                 .cnsrs(0)
                 .build();

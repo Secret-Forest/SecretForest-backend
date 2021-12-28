@@ -1,6 +1,7 @@
 package com.example.secretforest_project.Service;
 
 import com.example.secretforest_project.Dto.Request.PostRequest;
+import com.example.secretforest_project.Dto.Request.PostUpdateRequest;
 import com.example.secretforest_project.Entity.PostEntity;
 import com.example.secretforest_project.Entity.PostRepository;
 import com.example.secretforest_project.Exception.ConflictException;
@@ -34,20 +35,20 @@ public class PostService {
     }
 
     // 게시글 수정
-    public void updatepost(Long post_id, String pwd, PostRequest postRequest) {
+    public void updatepost(Long post_id, PostUpdateRequest postUpdateRequest) {
 
         PostEntity postEntity = postRepository.findById(post_id)
                 .orElseThrow(NotFoundException::new);
 
-        if (!passwordEncoder.matches(pwd, postEntity.getPwd())) {
+        if (!passwordEncoder.matches(postUpdateRequest.getPwd(), postEntity.getPwd())) {
             // matches(비교할 비밀번호, db에 저장되어 있는 비밀번호)
             throw new ConflictException();
         }
 
         PostEntity build = PostEntity.builder()
                 .id(postEntity.getId())
-                .title(postRequest.getTitle())
-                .content(postRequest.getContent())
+                .title(postUpdateRequest.getTitle())
+                .content(postUpdateRequest.getContent())
                 .writer(postEntity.getWriter())
                 .pwd(postEntity.getPwd())
                 .cnsrs(1)

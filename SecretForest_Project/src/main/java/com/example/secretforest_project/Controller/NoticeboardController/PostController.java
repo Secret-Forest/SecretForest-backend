@@ -2,6 +2,7 @@ package com.example.secretforest_project.Controller.NoticeboardController;
 
 import com.example.secretforest_project.Dto.Request.CommentsRequest;
 import com.example.secretforest_project.Dto.Request.PostRequest;
+import com.example.secretforest_project.Dto.Request.PostUpdateRequest;
 import com.example.secretforest_project.Dto.Response.PostResponse;
 import com.example.secretforest_project.Service.CommentsService;
 import com.example.secretforest_project.Service.PostService;
@@ -33,8 +34,8 @@ public class PostController {
     @PutMapping
     @ResponseStatus(HttpStatus.OK) // 200 요청을 정상적으로 처리함
     public void UpdatePost(@PathVariable("postid") Long post_id,
-                           @Valid @RequestBody PostRequest postRequest, String pwd) {
-        postService.updatepost(post_id,pwd, postRequest);
+                           @Valid @RequestBody PostUpdateRequest postUpdateRequest) {
+        postService.updatepost(post_id, postUpdateRequest);
     }
 
     // 게시글 삭제
