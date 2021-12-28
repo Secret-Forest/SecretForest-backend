@@ -25,12 +25,10 @@ public class PostEntity { // 게시글
     @Column(nullable = false, length = 2000)
     private String content;
 
-    @Column(nullable = false)
-    @Size(min = 2, max = 15)
+    @Column(nullable = false, length = 15)
     private String writer;
 
-    @Column(nullable = false)
-    @Size(min = 6, max = 20)
+    @Column(nullable = false, length = 20)
     private String pwd;
 
     @Column(nullable = false, length = 1)
