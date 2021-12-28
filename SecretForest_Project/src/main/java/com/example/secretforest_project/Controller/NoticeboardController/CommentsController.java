@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RequiredArgsConstructor
-@RequestMapping("/{commentsid}")
+@RequestMapping("/comments/{commentsid}")
 @RestController
 public class CommentsController {
 
     private final CommentsService commentsService;
 
     // 댓글 수정
-    @PutMapping("/update")
+    @PutMapping
     @ResponseStatus(HttpStatus.OK) // 200 요청을 정상적으로 처리함
     public void UpdateComments (@PathVariable("commentsid") Long comments_id,
                                 @Valid @RequestBody CommentsRequest commentsRequest, String pwd) {
@@ -29,13 +29,6 @@ public class CommentsController {
     public void DelComments(@PathVariable("commentsid") Long comments_id,
                             @Valid @RequestBody String pwd) {
         commentsService.delcomments(pwd, comments_id);
-    }
-
-    // 댓글 신고
-    @PutMapping
-    @ResponseStatus(HttpStatus.OK)
-    public void ReportComments (@PathVariable("commentsid") Long comments_id) {
-        commentsService.reportcomments(comments_id);
     }
 
 }
