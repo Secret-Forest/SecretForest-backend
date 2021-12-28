@@ -34,12 +34,12 @@ public class PostService {
     }
 
     // 게시글 수정
-    public void updatepost(Long post_id, PostRequest postRequest) {
+    public void updatepost(Long post_id, String pwd, PostRequest postRequest) {
 
         PostEntity postEntity = postRepository.findById(post_id)
                 .orElseThrow(NotFoundException::new);
 
-        if (!passwordEncoder.matches(postRequest.getPwd(), postEntity.getPwd())) {
+        if (!passwordEncoder.matches(pwd, postEntity.getPwd())) {
             // matches(비교할 비밀번호, db에 저장되어 있는 비밀번호)
             throw new ConflictException();
         }
