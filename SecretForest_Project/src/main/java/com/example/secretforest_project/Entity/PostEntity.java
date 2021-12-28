@@ -28,7 +28,7 @@ public class PostEntity { // 게시글
     @Column(nullable = false, length = 15)
     private String writer;
 
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 60)
     private String pwd;
 
     @Column(nullable = false, length = 1)
