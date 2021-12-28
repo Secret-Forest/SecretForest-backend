@@ -33,8 +33,8 @@ public class PostController {
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.OK) // 200 요청을 정상적으로 처리함
     public void UpdatePost(@PathVariable("postid") Long post_id,
-                           @Valid @RequestBody PostRequest postRequest) {
-        postService.updatepost(post_id, postRequest);
+                           @Valid @RequestBody PostRequest postRequest, String pwd) {
+        postService.updatepost(post_id,pwd, postRequest);
     }
 
     // 게시글 삭제
