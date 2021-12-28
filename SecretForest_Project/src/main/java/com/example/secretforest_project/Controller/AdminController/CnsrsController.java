@@ -15,14 +15,14 @@ public class CnsrsController {
     private final AdminService adminService;
 
     // 게시글 검열 - 통과
-    @PutMapping("/{postid}")
+    @PutMapping("/{postid}/pass")
     @ResponseStatus(HttpStatus.OK)
     public void PostOk(@PathVariable("postid") Long post_id) {
         adminService.postok(post_id);
     }
 
     // 게시글 검열 - 삭제
-    @DeleteMapping("/{postid}")
+    @DeleteMapping("/{postid}/elmnt")
     @ResponseStatus(HttpStatus.OK)
     public void PostNo(@PathVariable("postid") Long post_id) {
         adminService.postno(post_id);

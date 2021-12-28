@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 
 @RequiredArgsConstructor
 @RestController
@@ -25,16 +26,16 @@ public class NoticeboardController {
     }
 
     // 제목으로 게시글 검색
-    @GetMapping("/{title}")
+    @GetMapping("/search")
     @ResponseStatus(HttpStatus.OK) // 200 요청을 정상적으로 처리함
-    public PostListResponse FindTitle(@PathVariable String title) {
+    public PostListResponse FindTitle(@PathParam("title") String title) {
         return showPostService.findtitle(title);
     }
 
     // 작성자로 게시글 검색
-    @GetMapping("/{writer}")
+    @GetMapping("/search")
     @ResponseStatus(HttpStatus.OK) // 200 요청을 정상적으로 처리함
-    public PostListResponse FindWriter(@PathVariable String writer) {
+    public PostListResponse FindWriter(@PathParam("writer") String writer) {
         return showPostService.findwriter(writer);
     }
 
