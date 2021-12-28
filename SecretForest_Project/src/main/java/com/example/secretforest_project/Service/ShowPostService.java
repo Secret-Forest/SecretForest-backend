@@ -79,7 +79,7 @@ public class ShowPostService {
             commentsDtos.add(
                     CommentsRequest.builder()
                             .writer(commentsEntityeies.getWriter())
-                            .Comment(commentsEntityeies.getComment())
+                            .comment(commentsEntityeies.getComment())
                             .build()
             );
         }

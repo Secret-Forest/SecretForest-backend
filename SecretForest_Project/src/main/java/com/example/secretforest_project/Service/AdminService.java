@@ -58,7 +58,7 @@ public class AdminService {
                 .id(commentsEntity.getId())
                 .comments_id(commentsEntity.getComments_id())
                 .writer(commentsEntity.getWriter())
-                .Comment(commentsEntity.getComment())
+                .comment(commentsEntity.getComment())
                 .pwd(commentsEntity.getPwd())
                 .cnsrs(0)
                 .build();

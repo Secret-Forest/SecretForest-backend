@@ -20,7 +20,7 @@ public class CommentsResponse {
 
     @NotBlank
     @Size(max = 500)
-    private String Comment;
+    private String comment;
 
     @NotBlank
     private String writer;

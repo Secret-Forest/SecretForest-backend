@@ -18,7 +18,7 @@ public class CommentsEntity { // 댓글
     private Long id;
 
     @Column(nullable = false, length = 500)
-    private String Comment;
+    private String comment;
 
     @Column(nullable = false)
     private String writer;

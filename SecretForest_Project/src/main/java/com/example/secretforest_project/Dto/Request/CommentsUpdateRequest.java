@@ -16,7 +16,7 @@ public class CommentsUpdateRequest {
 
     @NotBlank
     @Size(max = 500)
-    private String Comment;
+    private String comment;
 
     @NotBlank
     @Size(min = 6, max = 20)

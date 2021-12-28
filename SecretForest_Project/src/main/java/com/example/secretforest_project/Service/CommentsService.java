@@ -35,7 +35,7 @@ public class CommentsService {
         commentsEntityList.add(
                 CommentsEntity.builder()
                         .writer(commentsRequest.getWriter())
-                        .Comment(commentsRequest.getComment())
+                        .comment(commentsRequest.getComment())
                         .pwd(passwordEncoder.encode(commentsRequest.getPwd()))
                         .cnsrs(0)
                         .build()
@@ -70,7 +70,7 @@ public class CommentsService {
                 .id(commentsEntity.getId())
                 .comments_id(commentsEntity.getComments_id())
                 .writer(commentsEntity.getWriter())
-                .Comment(commentsUpdateRequest.getComment())
+                .comment(commentsUpdateRequest.getComment())
                 .pwd(commentsEntity.getPwd())
                 .cnsrs(0)
                 .build();
@@ -104,7 +104,7 @@ public class CommentsService {
                 .id(commentsEntity.getId())
                 .comments_id(commentsEntity.getComments_id())
                 .writer(commentsEntity.getWriter())
-                .Comment(commentsEntity.getComment())
+                .comment(commentsEntity.getComment())
                 .pwd(commentsEntity.getPwd())
                 .cnsrs(2)
                 .build();
