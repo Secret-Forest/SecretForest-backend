@@ -47,12 +47,4 @@ public class PostController {
         postService.delpost(post_id, pwdRequest);
     }
 
-    // 댓글 작성
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED) // 201 성공적으로 자원을 생성함
-    public void SeveComments(@PathVariable("postid") Long post_id,
-                              @Valid @RequestBody CommentsRequest commentsRequest) {
-        commentsService.sevecomments(post_id, commentsRequest);
-    }
-
 }
