@@ -1,33 +1,27 @@
 package com.example.secretforest_project.Dto.Response;
 
-import com.example.secretforest_project.Dto.Request.CommentsRequest;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
-import java.util.ArrayList;
-import java.util.List;
+import javax.validation.constraints.Size;
 
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PostResponse {
+public class CommentsPostResponse {
 
     @NotBlank
     private Long id;
 
     @NotBlank
-    private String title;
-
-    @NotBlank
-    private String content;
+    @Size(max = 500)
+    private String comment;
 
     @NotBlank
     private String writer;
-
-    private List<CommentsPostResponse> commentsPostResponses = new ArrayList<>();
 
 }

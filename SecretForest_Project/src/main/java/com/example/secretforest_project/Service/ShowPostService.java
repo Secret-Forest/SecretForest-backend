@@ -1,6 +1,7 @@
 package com.example.secretforest_project.Service;
 
 import com.example.secretforest_project.Dto.Request.CommentsRequest;
+import com.example.secretforest_project.Dto.Response.CommentsPostResponse;
 import com.example.secretforest_project.Dto.Response.PostResponse;
 import com.example.secretforest_project.Dto.Response.PostListResponse;
 import com.example.secretforest_project.Dto.Response.PostViewResponse;
@@ -73,11 +74,12 @@ public class ShowPostService {
                 .orElseThrow(NotFoundException::new);
 
         List<CommentsEntity> commentsEntityList = postEntity.getCommentsEntities();
-        List<CommentsRequest> commentsDtos = new ArrayList<>();
+        List<CommentsPostResponse> commentsPostResponses = new ArrayList<>();
 
         for (CommentsEntity commentsEntityeies : commentsEntityList) {
-            commentsDtos.add(
-                    CommentsRequest.builder()
+            commentsPostResponses.add(
+                    CommentsPostResponse.builder()
+                            .id(commentsEntityeies.getId())
                             .writer(commentsEntityeies.getWriter())
                             .comment(commentsEntityeies.getComment())
                             .build()
@@ -90,7 +92,7 @@ public class ShowPostService {
                 .title(postEntity.getTitle())
                 .content(postEntity.getContent())
                 .writer(postEntity.getWriter())
-                .commentsDtos(commentsDtos)
+                .commentsPostResponses(commentsPostResponses)
                 .build();
 
     }
