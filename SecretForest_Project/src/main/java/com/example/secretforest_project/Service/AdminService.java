@@ -56,7 +56,7 @@ public class AdminService {
 
         CommentsEntity build = CommentsEntity.builder()
                 .id(commentsEntity.getId())
-                .comments_id(commentsEntity.getComments_id())
+                .post(commentsEntity.getPost())
                 .writer(commentsEntity.getWriter())
                 .comment(commentsEntity.getComment())
                 .pwd(commentsEntity.getPwd())

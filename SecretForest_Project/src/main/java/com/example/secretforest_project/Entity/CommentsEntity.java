@@ -14,6 +14,7 @@ import javax.validation.constraints.Size;
 public class CommentsEntity { // 댓글
 
     @Id
+    @Column(name = "comments_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -30,7 +31,7 @@ public class CommentsEntity { // 댓글
     private Integer cnsrs; // censorship(검열)
 
     @ManyToOne
-    @JoinColumn
-    @JsonManagedReference
-    private PostEntity comments_id;
+    @JoinColumn(name = "post_id")
+    private PostEntity post;
+
 }

@@ -31,27 +31,15 @@ public class CommentsService {
         PostEntity postEntity = postRepository.findById(postid)
                 .orElseThrow(NotFoundException::new);
 
-        List<CommentsEntity> commentsEntityList = postEntity.getCommentsEntities();
-        commentsEntityList.add(
-                CommentsEntity.builder()
-                        .writer(commentsRequest.getWriter())
-                        .comment(commentsRequest.getComment())
-                        .pwd(passwordEncoder.encode(commentsRequest.getPwd()))
-                        .cnsrs(0)
-                        .build()
-        );
-
-        PostEntity build = PostEntity.builder()
-                .id(postEntity.getId())
-                .title(postEntity.getTitle())
-                .content(postEntity.getContent())
-                .writer(postEntity.getWriter())
-                .pwd(postEntity.getPwd())
-                .cnsrs(postEntity.getCnsrs())
-                .commentsEntities(commentsEntityList)
+        CommentsEntity commentsEntity = CommentsEntity.builder()
+                .post(postEntity)
+                .writer(commentsRequest.getWriter())
+                .comment(commentsRequest.getComment())
+                .pwd(passwordEncoder.encode(commentsRequest.getPwd()))
+                .cnsrs(0)
                 .build();
 
-        postRepository.save(build);
+        commentsRepository.save(commentsEntity);
 
     }
 
@@ -68,7 +56,7 @@ public class CommentsService {
 
         CommentsEntity build = CommentsEntity.builder()
                 .id(commentsEntity.getId())
-                .comments_id(commentsEntity.getComments_id())
+                .post(commentsEntity.getPost())
                 .writer(commentsEntity.getWriter())
                 .comment(commentsUpdateRequest.getComment())
                 .pwd(commentsEntity.getPwd())
@@ -102,7 +90,7 @@ public class CommentsService {
 
         CommentsEntity build = CommentsEntity.builder()
                 .id(commentsEntity.getId())
-                .comments_id(commentsEntity.getComments_id())
+                .post(commentsEntity.getPost())
                 .writer(commentsEntity.getWriter())
                 .comment(commentsEntity.getComment())
                 .pwd(commentsEntity.getPwd())

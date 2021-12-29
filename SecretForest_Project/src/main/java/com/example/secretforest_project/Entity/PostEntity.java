@@ -16,7 +16,8 @@ import java.util.List;
 public class PostEntity { // 게시글
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "post_id")
+    @GeneratedValue
     private Long id;
 
     @Column(nullable = false, length = 100)
@@ -34,8 +35,7 @@ public class PostEntity { // 게시글
     @Column(nullable = false, length = 1)
     private Integer cnsrs; // censorship(검열)
 
-    @OneToMany(cascade=CascadeType.ALL, mappedBy = "comments_id")
-    @JsonBackReference
+    @OneToMany(cascade=CascadeType.ALL, mappedBy = "post")
     private List<CommentsEntity> commentsEntities = new ArrayList<>();
 
 }
