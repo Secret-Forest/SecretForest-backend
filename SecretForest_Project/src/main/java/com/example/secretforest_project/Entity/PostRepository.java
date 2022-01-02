@@ -6,9 +6,8 @@ import java.util.List;
 
 public interface PostRepository extends CrudRepository<PostEntity, Long> {
 
-    List<PostEntity> findAllByTitleLike(String title);
-    List<PostEntity> findAllByWriter(String writer);
     List<PostEntity> findAllBy();
-
+    List<PostEntity> findAllByWriter(String writer);
+    List<PostEntity> findAllByTitleContaining(String title);
 
 }

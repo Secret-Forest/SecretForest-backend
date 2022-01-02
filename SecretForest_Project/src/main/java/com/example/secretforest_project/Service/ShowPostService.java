@@ -47,7 +47,7 @@ public class ShowPostService {
     // 제목으로 게시글 찾기
     public PostListResponse findtitle(String title) {
 
-        List<PostEntity> postEntityList = postRepository.findAllByTitleLike(title);
+        List<PostEntity> postEntityList = postRepository.findAllByTitleContaining(title);
         return list(postEntityList);
 
     }

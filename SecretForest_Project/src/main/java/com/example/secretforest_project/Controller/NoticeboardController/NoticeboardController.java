@@ -31,14 +31,14 @@ public class NoticeboardController {
     // 제목으로 게시글 검색
     @GetMapping("/search/title")
     @ResponseStatus(HttpStatus.OK) // 200 요청을 정상적으로 처리함
-    public PostListResponse FindTitle(@PathParam("title") String title) {
+    public PostListResponse FindTitle(@RequestParam(value = "title") String title) {
         return showPostService.findtitle(title);
     }
 
     // 작성자로 게시글 검색
     @GetMapping("/search/writer")
     @ResponseStatus(HttpStatus.OK) // 200 요청을 정상적으로 처리함
-    public PostListResponse FindWriter(@PathParam("writer") String writer) {
+    public PostListResponse FindWriter(@RequestParam(value = "writer") String writer) {
         return showPostService.findwriter(writer);
     }
 
