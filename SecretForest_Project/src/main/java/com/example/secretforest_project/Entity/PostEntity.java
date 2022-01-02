@@ -17,7 +17,7 @@ public class PostEntity { // 게시글
 
     @Id
     @Column(name = "post_id")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, length = 100)
