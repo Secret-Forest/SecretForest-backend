@@ -4,6 +4,7 @@ import com.example.secretforest_project.Dto.Response.CommentsListResponse;
 import com.example.secretforest_project.Dto.Response.PostListResponse;
 import com.example.secretforest_project.Service.AdminService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,8 +32,7 @@ public class CnsrsController {
     // 검열해야하는 게시물 목록
     @GetMapping("/post")
     @ResponseStatus(HttpStatus.OK)
-    public PostListResponse ShowPost() {
-        return adminService.showpost();
+    public PostListResponse ShowPost(Pageable page) {
+        return adminService.showpost(page);
     }
-
 }

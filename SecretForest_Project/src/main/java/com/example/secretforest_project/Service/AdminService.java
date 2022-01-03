@@ -7,6 +7,8 @@ import com.example.secretforest_project.Entity.PostEntity;
 import com.example.secretforest_project.Entity.PostRepository;
 import com.example.secretforest_project.Exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -78,9 +80,9 @@ public class AdminService {
     }
 
     // 게시글 검열 목록
-    public PostListResponse showpost() {
+    public PostListResponse showpost(Pageable page) {
 
-        List<PostEntity> postEntityList = postRepository.findAllBy();
+        Page<PostEntity> postEntityList = postRepository.findAllByCnsrsOrderByIdDesc(1, page);
         List<PostViewResponse> postViewDtos = new ArrayList<>();
 
         for (PostEntity postEntity : postEntityList) {
@@ -101,13 +103,12 @@ public class AdminService {
     }
 
     // 게시글 신고 목록
-    public PostListResponse showreportpost() {
+    public PostListResponse showreportpost(Pageable page) {
 
-        List<PostEntity> postEntityList = postRepository.findAllBy();
+        Page<PostEntity> postEntityList = postRepository.findAllByCnsrsOrderByIdDesc(2, page);
         List<PostViewResponse> postViewDtos = new ArrayList<>();
 
         for (PostEntity postEntity : postEntityList) {
-            if(postEntity.getCnsrs() == 2)
                 postViewDtos.add(
                         PostViewResponse.builder()
                                 .id(postEntity.getId())
@@ -124,13 +125,12 @@ public class AdminService {
     }
 
     // 댓글 신고 목록
-    public CommentsListResponse showreportcomments() {
+    public CommentsListResponse showreportcomments(Pageable page) {
 
-        List<CommentsEntity> commentsEntityList = commentsRepository.findAllBy();
+        Page<CommentsEntity> commentsEntityList = commentsRepository.findAllByCnsrsOrderByIdDesc(2, page);
         List<CommentsViewResponse> commentsViewResponseList = new ArrayList<>();
 
         for (CommentsEntity commentsEntity : commentsEntityList) {
-            if (commentsEntity.getCnsrs() == 2)
                 commentsViewResponseList.add(
                         CommentsViewResponse.builder()
                                 .id(commentsEntity.getId())

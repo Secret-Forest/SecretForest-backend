@@ -7,6 +7,7 @@ import com.example.secretforest_project.Service.CommentsService;
 import com.example.secretforest_project.Service.PostService;
 import com.example.secretforest_project.Service.ShowPostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,22 +25,22 @@ public class NoticeboardController {
     // 첫 메인 페이지
     @GetMapping("/")
     @ResponseStatus(HttpStatus.OK) // 200 요청을 정상적으로 처리함
-    public PostListResponse ShowMain() {
-        return showPostService.showmain();
+    public PostListResponse ShowMain(Pageable page) {
+        return showPostService.showmain(page);
     }
 
     // 제목으로 게시글 검색
     @GetMapping("/search/title")
     @ResponseStatus(HttpStatus.OK) // 200 요청을 정상적으로 처리함
-    public PostListResponse FindTitle(@RequestParam(value = "title") String title) {
-        return showPostService.findtitle(title);
+    public PostListResponse FindTitle(@RequestParam(value = "title") String title, Pageable page) {
+        return showPostService.findtitle(title, page);
     }
 
     // 작성자로 게시글 검색
     @GetMapping("/search/writer")
     @ResponseStatus(HttpStatus.OK) // 200 요청을 정상적으로 처리함
-    public PostListResponse FindWriter(@RequestParam(value = "writer") String writer) {
-        return showPostService.findwriter(writer);
+    public PostListResponse FindWriter(@RequestParam(value = "writer") String writer, Pageable page) {
+        return showPostService.findwriter(writer, page);
     }
 
     // 게시글 작성

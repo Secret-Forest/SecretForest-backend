@@ -1,6 +1,5 @@
 package com.example.secretforest_project.Service;
 
-import com.example.secretforest_project.Dto.Request.CommentsRequest;
 import com.example.secretforest_project.Dto.Response.CommentsPostResponse;
 import com.example.secretforest_project.Dto.Response.PostResponse;
 import com.example.secretforest_project.Dto.Response.PostListResponse;
@@ -9,8 +8,9 @@ import com.example.secretforest_project.Entity.CommentsEntity;
 import com.example.secretforest_project.Entity.PostEntity;
 import com.example.secretforest_project.Entity.PostRepository;
 import com.example.secretforest_project.Exception.NotFoundException;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class ShowPostService {
     private final PostRepository postRepository;
 
     // 중복코드
-    private PostListResponse list(List<PostEntity> postEntityList) {
+    private PostListResponse list(Page<PostEntity> postEntityList) {
 
         List<PostViewResponse> postViewDtos = new ArrayList<>();
 
@@ -45,25 +45,25 @@ public class ShowPostService {
     }
 
     // 제목으로 게시글 찾기
-    public PostListResponse findtitle(String title) {
+    public PostListResponse findtitle(String title, Pageable page) {
 
-        List<PostEntity> postEntityList = postRepository.findAllByTitleContaining(title);
+        Page<PostEntity> postEntityList = postRepository.findAllByTitleContainingOrderByTitle(title, page);
         return list(postEntityList);
 
     }
 
     // 작성자로 게시글 찾기
-    public PostListResponse findwriter(String writer) {
+    public PostListResponse findwriter(String writer, Pageable page) {
 
-        List<PostEntity> postEntityList = postRepository.findAllByWriter(writer);
+        Page<PostEntity> postEntityList = postRepository.findAllByWriterOrderByWriter(writer, page);
         return list(postEntityList);
 
     }
 
     // main 게시글 보기
-    public PostListResponse showmain() {
+    public PostListResponse showmain(Pageable page) {
 
-        List<PostEntity> postEntityList = postRepository.findAllBy();
+        Page<PostEntity> postEntityList = postRepository.findAllByOrderByIdDesc(page);
         return list(postEntityList);
     }
 
@@ -85,7 +85,6 @@ public class ShowPostService {
                             .build()
             );
         }
-
 
         return PostResponse.builder()
                 .id(postEntity.getId())

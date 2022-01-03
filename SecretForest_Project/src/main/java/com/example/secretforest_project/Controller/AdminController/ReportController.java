@@ -6,6 +6,7 @@ import com.example.secretforest_project.Service.AdminService;
 import com.example.secretforest_project.Service.CommentsService;
 import com.example.secretforest_project.Service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,15 +51,15 @@ public class ReportController {
     // 신고된 게시물 목록
     @GetMapping("/post")
     @ResponseStatus(HttpStatus.OK)
-    public PostListResponse ShowReportPost() {
-        return adminService.showreportpost();
+    public PostListResponse ShowReportPost(Pageable page) {
+        return adminService.showreportpost(page);
     }
 
     // 신고된 댓글 목록
     @GetMapping("/comments")
     @ResponseStatus(HttpStatus.OK)
-    public CommentsListResponse ShowReportComments() {
-        return adminService.showreportcomments();
+    public CommentsListResponse ShowReportComments(Pageable page) {
+        return adminService.showreportcomments(page);
     }
 
 }
