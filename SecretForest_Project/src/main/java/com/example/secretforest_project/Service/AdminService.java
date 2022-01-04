@@ -86,7 +86,6 @@ public class AdminService {
         List<PostViewResponse> postViewDtos = new ArrayList<>();
 
         for (PostEntity postEntity : postEntityList) {
-            if(postEntity.getCnsrs() == 1)
             postViewDtos.add(
                     PostViewResponse.builder()
                             .id(postEntity.getId())
