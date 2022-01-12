@@ -1,5 +1,6 @@
-package com.example.secretforest_project.Entity;
+package com.example.secretforest_project.Entity.Comments;
 
+import com.example.secretforest_project.Entity.Post.PostEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;

@@ -1,5 +1,6 @@
-package com.example.secretforest_project.Entity;
+package com.example.secretforest_project.Entity.Comments;
 
+import com.example.secretforest_project.Entity.Post.PostEntity;
 import lombok.*;
 
 import javax.persistence.*;

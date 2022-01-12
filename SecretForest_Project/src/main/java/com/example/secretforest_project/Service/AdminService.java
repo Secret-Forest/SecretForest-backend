@@ -1,10 +1,10 @@
 package com.example.secretforest_project.Service;
 
 import com.example.secretforest_project.Dto.Response.*;
-import com.example.secretforest_project.Entity.CommentsEntity;
-import com.example.secretforest_project.Entity.CommentsRepository;
-import com.example.secretforest_project.Entity.PostEntity;
-import com.example.secretforest_project.Entity.PostRepository;
+import com.example.secretforest_project.Entity.Comments.CommentsEntity;
+import com.example.secretforest_project.Entity.Comments.CommentsRepository;
+import com.example.secretforest_project.Entity.Post.PostEntity;
+import com.example.secretforest_project.Entity.Post.PostRepository;
 import com.example.secretforest_project.Exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

@@ -1,4 +1,4 @@
-package com.example.secretforest_project.Entity;
+package com.example.secretforest_project.Entity.Post;
 
 import lombok.*;
 
