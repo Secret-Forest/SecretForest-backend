@@ -33,7 +33,4 @@ public class PostEntity { // 게시글
     @Column(nullable = false, length = 1)
     private Integer cnsrs; // censorship(검열)
 
-    @OneToMany(cascade=CascadeType.ALL, mappedBy = "post")
-    private List<CommentsEntity> commentsEntities = new ArrayList<>();
-
 }

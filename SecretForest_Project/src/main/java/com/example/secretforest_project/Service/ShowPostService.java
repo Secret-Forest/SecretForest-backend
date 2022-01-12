@@ -5,6 +5,7 @@ import com.example.secretforest_project.Dto.Response.PostResponse;
 import com.example.secretforest_project.Dto.Response.PostListResponse;
 import com.example.secretforest_project.Dto.Response.PostViewResponse;
 import com.example.secretforest_project.Entity.CommentsEntity;
+import com.example.secretforest_project.Entity.CommentsRepository;
 import com.example.secretforest_project.Entity.PostEntity;
 import com.example.secretforest_project.Entity.PostRepository;
 import com.example.secretforest_project.Exception.NotFoundException;
@@ -21,6 +22,7 @@ import java.util.List;
 public class ShowPostService {
 
     private final PostRepository postRepository;
+    private final CommentsRepository commentsRepository;
 
     // 중복코드
     private PostListResponse list(Page<PostEntity> postEntityList) {
@@ -73,7 +75,7 @@ public class ShowPostService {
         PostEntity postEntity = postRepository.findById(postid)
                 .orElseThrow(NotFoundException::new);
 
-        List<CommentsEntity> commentsEntityList = postEntity.getCommentsEntities();
+        List<CommentsEntity> commentsEntityList = commentsRepository.findAllByPost(postEntity);
         List<CommentsPostResponse> commentsPostResponses = new ArrayList<>();
 
         for (CommentsEntity commentsEntityeies : commentsEntityList) {

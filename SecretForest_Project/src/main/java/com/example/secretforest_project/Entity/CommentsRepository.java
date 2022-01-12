@@ -8,5 +8,7 @@ import java.util.List;
 
 public interface CommentsRepository extends CrudRepository<CommentsEntity, Long> {
 
-    Page<CommentsEntity> findAllByCnsrsOrderByIdDesc(Integer i, Pageable page);
+    Page<CommentsEntity> findAllByCnsrsOrderByIdDesc(Integer cnsrs, Pageable page);
+    List<CommentsEntity> findAllByPost(PostEntity id);
+
 }
