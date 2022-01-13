@@ -58,4 +58,18 @@ public class NoticeboardController {
         commentsService.sevecomments(post_id, commentsRequest);
     }
 
+    // 게시글 신고
+    @PutMapping("/report/post/{postid}")
+    @ResponseStatus(HttpStatus.OK)
+    public void ReportPost (@PathVariable("postid") Long post_id) {
+        postService.reportpost(post_id);
+    }
+
+    // 댓글 신고
+    @PutMapping("/report/comments/{commentsid}")
+    @ResponseStatus(HttpStatus.OK)
+    public void ReportComments (@PathVariable("commentsid") Long comments_id) {
+        commentsService.reportcomments(comments_id);
+    }
+
 }

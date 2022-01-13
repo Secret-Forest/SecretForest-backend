@@ -36,14 +36,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
                 .authorizeRequests() // 시큐리티 처리에 HttpServletRequest를 이용한다는 것을 의미, HttpServletRequest 에 따라 요청을 제한
                 // 권한 관리 대상을 지정하는 옵션으로 URL,메소드 별로 관리가 가능하다.
-                .antMatchers(HttpMethod.GET, "/report/post").authenticated() // 인증된 사용자에게만 허용
-                .antMatchers(HttpMethod.GET, "/report/comments").authenticated()
-                .antMatchers(HttpMethod.PUT, "/report/**/pass").authenticated()
-                .antMatchers(HttpMethod.DELETE, "/report/**/elmnt").authenticated()
+                .antMatchers(HttpMethod.GET, "/admin/report/post").authenticated() // 인증된 사용자에게만 허용
+                .antMatchers(HttpMethod.GET, "/admin/report/comments").authenticated()
+                .antMatchers(HttpMethod.PUT, "/admin/report/**/pass").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/admin/report/**/elmnt").authenticated()
 
-                .antMatchers(HttpMethod.GET, "/cnsrs/post").authenticated()
-                .antMatchers(HttpMethod.PUT, "/cnsrs/**/pass").authenticated()
-                .antMatchers(HttpMethod.DELETE, "/cnsrs/**/elmnt").authenticated()
+                .antMatchers(HttpMethod.GET, "/admin/cnsrs/post").authenticated()
+                .antMatchers(HttpMethod.PUT, "/admin/cnsrs/**/pass").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/admin/cnsrs/**/elmnt").authenticated()
+
+                .antMatchers(HttpMethod.GET, "/admin/post").authenticated()
                 
                 .anyRequest().permitAll();// 나머지 url들은(.anyRequest()) 무조건 접근 허용(.permitAll())한다.
     }

@@ -52,7 +52,7 @@ public class PostService {
                 .content(postUpdateRequest.getContent())
                 .writer(postEntity.getWriter())
                 .pwd(postEntity.getPwd())
-                .cnsrs(1)
+                .cnsrs(2)
                 .build();
 
         postRepository.save(build);
@@ -86,7 +86,7 @@ public class PostService {
                 .content(postEntity.getContent())
                 .writer(postEntity.getWriter())
                 .pwd(postEntity.getPwd())
-                .cnsrs(2)
+                .cnsrs(3)
                 .build();
 
         postRepository.save(build);

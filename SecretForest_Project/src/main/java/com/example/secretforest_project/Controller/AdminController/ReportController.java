@@ -11,29 +11,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("admin//report")
+@RequestMapping("/admin/report")
 @RequiredArgsConstructor
 @RestController
 public class ReportController {
 
     private final AdminCommentsService adminCommentsService;
     private final AdminPostService adminPostService;
-    private final CommentsService commentsService;
-    private final PostService postService;
-
-    // 게시글 신고
-    @PutMapping("post/{postid}")
-    @ResponseStatus(HttpStatus.OK)
-    public void ReportPost (@PathVariable("postid") Long post_id) {
-        postService.reportpost(post_id);
-    }
-
-    // 댓글 신고
-    @PutMapping("comments/{commentsid}")
-    @ResponseStatus(HttpStatus.OK)
-    public void ReportComments (@PathVariable("commentsid") Long comments_id) {
-        commentsService.reportcomments(comments_id);
-    }
 
     // 댓글 검열 - 통과
     @PutMapping("/{commentsid}/pass")

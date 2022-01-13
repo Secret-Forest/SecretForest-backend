@@ -14,7 +14,7 @@ public class AdminController {
     private final ShowPostService showPostService;
 
     // 게시글 보기
-    @GetMapping("/post")
+    @GetMapping("/post/{postid}")
     @ResponseStatus(HttpStatus.OK) // 200 요청을 정상적으로 처리함
     public PostResponse ShowPost(@PathVariable("postid") Long postid) {
         return showPostService.showpost(postid);

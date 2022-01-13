@@ -92,7 +92,7 @@ public class CommentsService {
                 .writer(commentsEntity.getWriter())
                 .comment(commentsEntity.getComment())
                 .pwd(commentsEntity.getPwd())
-                .cnsrs(2)
+                .cnsrs(3)
                 .build();
 
         commentsRepository.save(build);
