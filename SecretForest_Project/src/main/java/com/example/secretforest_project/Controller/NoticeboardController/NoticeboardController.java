@@ -44,7 +44,7 @@ public class NoticeboardController {
     }
 
     // 게시글 작성
-    @PostMapping("/post")
+    @PostMapping("/board")
     @ResponseStatus(HttpStatus.CREATED) // 201 성공적으로 자원을 생성함
     public void SavePost(@Valid @RequestBody PostRequest postRequest) {
         postService.savepost(postRequest);
@@ -59,7 +59,7 @@ public class NoticeboardController {
     }
 
     // 게시글 신고
-    @PutMapping("/report/post/{postid}")
+    @PutMapping("/report/board/{postid}")
     @ResponseStatus(HttpStatus.OK)
     public void ReportPost (@PathVariable("postid") Long post_id) {
         postService.reportpost(post_id);

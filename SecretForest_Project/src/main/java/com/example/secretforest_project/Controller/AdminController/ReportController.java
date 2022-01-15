@@ -34,7 +34,7 @@ public class ReportController {
     }
 
     // 신고된 게시물 목록
-    @GetMapping("/post")
+    @GetMapping("/board")
     @ResponseStatus(HttpStatus.OK)
     public PostListResponse ShowReportPost(Pageable page) {
         return adminPostService.showreportpost(page);

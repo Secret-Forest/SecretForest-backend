@@ -16,7 +16,7 @@ import javax.validation.Valid;
 
 
 @RequiredArgsConstructor
-@RequestMapping("/post/{postid}")
+@RequestMapping("/board/{postid}")
 @RestController
 public class PostController {
 

@@ -29,7 +29,7 @@ public class CnsrsController {
     }
 
     // 검열해야하는 게시물 목록
-    @GetMapping("/post")
+    @GetMapping("/board")
     @ResponseStatus(HttpStatus.OK)
     public CnsrsPostListResponse ShowPost(Pageable page) {
         return adminPostService.showpost(page);
