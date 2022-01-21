@@ -15,10 +15,10 @@ public class Admin {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "account_Id",nullable = false, length = 10)
+    @Column(name = "admin_Id",nullable = false, length = 10)
     private String aminId;
 
-    @Column(name = "account_pwd",nullable = false)
+    @Column(name = "admin_pwd",nullable = false)
     private String pwd;
 
 }
