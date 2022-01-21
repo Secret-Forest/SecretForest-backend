@@ -3,7 +3,7 @@ package com.example.secretforest_project.Service;
 import com.example.secretforest_project.Dto.Request.PostRequest;
 import com.example.secretforest_project.Dto.Request.PostUpdateRequest;
 import com.example.secretforest_project.Dto.Request.PwdRequest;
-import com.example.secretforest_project.Entity.Post.PostEntity;
+import com.example.secretforest_project.Entity.Post.Post;
 import com.example.secretforest_project.Entity.Post.PostRepository;
 import com.example.secretforest_project.Exception.ConflictException;
 import com.example.secretforest_project.Exception.NotFoundException;
@@ -23,7 +23,7 @@ public class PostService {
     // 게시글 저장
     public void savepost(PostRequest postRequest) {
 
-        PostEntity postEntity = PostEntity.builder()
+        Post postEntity = Post.builder()
                 .title(postRequest.getTitle())
                 .content(postRequest.getContent())
                 .writer(postRequest.getWriter())
@@ -38,7 +38,7 @@ public class PostService {
     // 게시글 수정
     public void updatepost(Long post_id, PostUpdateRequest postUpdateRequest) {
 
-        PostEntity postEntity = postRepository.findById(post_id)
+        Post postEntity = postRepository.findById(post_id)
                 .orElseThrow(NotFoundException::new);
 
         if (!passwordEncoder.matches(postUpdateRequest.getPwd(), postEntity.getPwd())) {
@@ -46,7 +46,7 @@ public class PostService {
             throw new ConflictException();
         }
 
-        PostEntity build = PostEntity.builder()
+        Post build = Post.builder()
                 .id(postEntity.getId())
                 .title(postUpdateRequest.getTitle())
                 .content(postUpdateRequest.getContent())
@@ -62,7 +62,7 @@ public class PostService {
     // 게시글 삭제
     public void delpost(Long post_id, PwdRequest pwdRequest) {
 
-        PostEntity postEntity = postRepository.findById(post_id)
+        Post postEntity = postRepository.findById(post_id)
                 .orElseThrow(ConflictException::new);
 
         if (!passwordEncoder.matches(pwdRequest.getPwd(), postEntity.getPwd())) {
@@ -77,10 +77,10 @@ public class PostService {
     // 게시글 신고
     public void reportpost(Long post_id) {
 
-        PostEntity postEntity = postRepository.findById(post_id)
+        Post postEntity = postRepository.findById(post_id)
                 .orElseThrow(NotFoundException::new);
 
-        PostEntity build = PostEntity.builder()
+        Post build = Post.builder()
                 .id(postEntity.getId())
                 .title(postEntity.getTitle())
                 .content(postEntity.getContent())

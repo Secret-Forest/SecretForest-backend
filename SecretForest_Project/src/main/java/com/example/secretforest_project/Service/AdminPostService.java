@@ -4,7 +4,7 @@ import com.example.secretforest_project.Dto.Response.CnsrsPostListResponse;
 import com.example.secretforest_project.Dto.Response.CnsrsPostResponse;
 import com.example.secretforest_project.Dto.Response.PostListResponse;
 import com.example.secretforest_project.Dto.Response.PostViewResponse;
-import com.example.secretforest_project.Entity.Post.PostEntity;
+import com.example.secretforest_project.Entity.Post.Post;
 import com.example.secretforest_project.Entity.Post.PostRepository;
 import com.example.secretforest_project.Exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -24,10 +24,10 @@ public class AdminPostService {
     // 게시글 검열 통과
     public void postok(Long post_id) {
 
-        PostEntity postEntity = postRepository.findById(post_id)
+        Post postEntity = postRepository.findById(post_id)
                 .orElseThrow(NotFoundException::new);
 
-        PostEntity build = PostEntity.builder()
+        Post build = Post.builder()
                 .id(postEntity.getId())
                 .title(postEntity.getTitle())
                 .content(postEntity.getContent())
@@ -43,7 +43,7 @@ public class AdminPostService {
     // 게시글 검열 삭제
     public void postno(Long post_id) {
 
-        PostEntity postEntity = postRepository.findById(post_id)
+        Post postEntity = postRepository.findById(post_id)
                 .orElseThrow(NotFoundException::new);
 
         postRepository.delete(postEntity);
@@ -53,10 +53,10 @@ public class AdminPostService {
     // 게시글 검열 목록
     public CnsrsPostListResponse showpost(Pageable page) {
 
-        Page<PostEntity> postEntityList = postRepository.findAllByCnsrsBetweenOrderByIdDesc(1,2, page);
+        Page<Post> postEntityList = postRepository.findAllByCnsrsBetweenOrderByIdDesc(1,2, page);
         List<CnsrsPostResponse> cnsrsPostResponses = new ArrayList<>();
 
-        for (PostEntity postEntity : postEntityList) {
+        for (Post postEntity : postEntityList) {
             cnsrsPostResponses.add(
                     CnsrsPostResponse.builder()
                             .id(postEntity.getId())
@@ -76,10 +76,10 @@ public class AdminPostService {
     // 게시글 신고 목록
     public PostListResponse showreportpost(Pageable page) {
 
-        Page<PostEntity> postEntityList = postRepository.findAllByCnsrsOrderByIdDesc(3, page);
+        Page<Post> postEntityList = postRepository.findAllByCnsrsOrderByIdDesc(3, page);
         List<PostViewResponse> postViewDtos = new ArrayList<>();
 
-        for (PostEntity postEntity : postEntityList) {
+        for (Post postEntity : postEntityList) {
                 postViewDtos.add(
                         PostViewResponse.builder()
                                 .id(postEntity.getId())

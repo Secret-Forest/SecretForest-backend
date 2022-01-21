@@ -3,9 +3,9 @@ package com.example.secretforest_project.Service;
 import com.example.secretforest_project.Dto.Request.CommentsRequest;
 import com.example.secretforest_project.Dto.Request.CommentsUpdateRequest;
 import com.example.secretforest_project.Dto.Request.PwdRequest;
-import com.example.secretforest_project.Entity.Comments.CommentsEntity;
+import com.example.secretforest_project.Entity.Comments.Comments;
 import com.example.secretforest_project.Entity.Comments.CommentsRepository;
-import com.example.secretforest_project.Entity.Post.PostEntity;
+import com.example.secretforest_project.Entity.Post.Post;
 import com.example.secretforest_project.Entity.Post.PostRepository;
 import com.example.secretforest_project.Exception.ConflictException;
 import com.example.secretforest_project.Exception.NotFoundException;
@@ -26,10 +26,10 @@ public class CommentsService {
     // 댓글 저장
     public void sevecomments(Long postid, CommentsRequest commentsRequest) {
 
-        PostEntity postEntity = postRepository.findById(postid)
+        Post postEntity = postRepository.findById(postid)
                 .orElseThrow(NotFoundException::new);
 
-        CommentsEntity commentsEntity = CommentsEntity.builder()
+        Comments commentsEntity = Comments.builder()
                 .post(postEntity)
                 .writer(commentsRequest.getWriter())
                 .comment(commentsRequest.getComment())
@@ -44,7 +44,7 @@ public class CommentsService {
     // 댓글 수정
     public void updatecomments(Long commentsid, CommentsUpdateRequest commentsUpdateRequest) {
 
-        CommentsEntity commentsEntity = commentsRepository.findById(commentsid)
+        Comments commentsEntity = commentsRepository.findById(commentsid)
                 .orElseThrow(NotFoundException::new);
 
         if (!passwordEncoder.matches(commentsUpdateRequest.getPwd(), commentsEntity.getPwd())) {
@@ -52,7 +52,7 @@ public class CommentsService {
             throw new ConflictException();
         }
 
-        CommentsEntity build = CommentsEntity.builder()
+        Comments build = Comments.builder()
                 .id(commentsEntity.getId())
                 .post(commentsEntity.getPost())
                 .writer(commentsEntity.getWriter())
@@ -68,7 +68,7 @@ public class CommentsService {
     // 댓글 삭제
     public void delcomments(PwdRequest pwdRequest, Long commentsid) {
 
-        CommentsEntity commentsEntity = commentsRepository.findById(commentsid)
+        Comments commentsEntity = commentsRepository.findById(commentsid)
                 .orElseThrow(NotFoundException::new);
 
         if (!passwordEncoder.matches(pwdRequest.getPwd(), commentsEntity.getPwd())) {
@@ -83,10 +83,10 @@ public class CommentsService {
     // 댓글 신고
     public void reportcomments(Long comments_id) {
 
-        CommentsEntity commentsEntity = commentsRepository.findById(comments_id)
+        Comments commentsEntity = commentsRepository.findById(comments_id)
                 .orElseThrow(NotFoundException::new);
 
-        CommentsEntity build = CommentsEntity.builder()
+        Comments build = Comments.builder()
                 .id(commentsEntity.getId())
                 .post(commentsEntity.getPost())
                 .writer(commentsEntity.getWriter())

@@ -1,19 +1,18 @@
 package com.example.secretforest_project.Entity.Post;
 
-import com.example.secretforest_project.Entity.Post.PostEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 
-public interface PostRepository extends CrudRepository<PostEntity, Long> {
+public interface PostRepository extends CrudRepository<Post, Long> {
 
-    Optional<PostEntity> findById(Long post_id);
-    Page<PostEntity> findAllByWriterOrderByWriter(String writer, Pageable page);
-    Page<PostEntity> findAllByTitleContainingOrderByTitle(String title, Pageable page);
-    Page<PostEntity> findAllByOrderByIdDesc(Pageable page);
-    Page<PostEntity> findAllByCnsrsOrderByIdDesc(Integer cnsrs, Pageable page);
-    Page<PostEntity> findAllByCnsrsBetweenOrderByIdDesc(Integer start, Integer end, Pageable page);
+    Optional<Post> findById(Long post_id);
+    Page<Post> findAllByWriterOrderByWriter(String writer, Pageable page);
+    Page<Post> findAllByTitleContainingOrderByTitle(String title, Pageable page);
+    Page<Post> findAllByOrderByIdDesc(Pageable page);
+    Page<Post> findAllByCnsrsOrderByIdDesc(Integer cnsrs, Pageable page);
+    Page<Post> findAllByCnsrsBetweenOrderByIdDesc(Integer start, Integer end, Pageable page);
 
 }

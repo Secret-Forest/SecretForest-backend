@@ -2,7 +2,7 @@ package com.example.secretforest_project.Service;
 
 import com.example.secretforest_project.Dto.Response.CommentsListResponse;
 import com.example.secretforest_project.Dto.Response.CommentsViewResponse;
-import com.example.secretforest_project.Entity.Comments.CommentsEntity;
+import com.example.secretforest_project.Entity.Comments.Comments;
 import com.example.secretforest_project.Entity.Comments.CommentsRepository;
 import com.example.secretforest_project.Exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -22,10 +22,10 @@ public class AdminCommentsService {
     // 댓글 검열 통과
     public void commentsok(Long comments_id) {
 
-        CommentsEntity commentsEntity = commentsRepository.findById(comments_id)
+        Comments commentsEntity = commentsRepository.findById(comments_id)
                 .orElseThrow(NotFoundException::new);
 
-        CommentsEntity build = CommentsEntity.builder()
+        Comments build = Comments.builder()
                 .id(commentsEntity.getId())
                 .post(commentsEntity.getPost())
                 .writer(commentsEntity.getWriter())
@@ -41,7 +41,7 @@ public class AdminCommentsService {
     // 댓글 검열 삭제
     public void commentsno(Long comments_id) {
 
-        CommentsEntity commentsEntity = commentsRepository.findById(comments_id)
+        Comments commentsEntity = commentsRepository.findById(comments_id)
                 .orElseThrow(NotFoundException::new);
 
         commentsRepository.delete(commentsEntity);
@@ -51,10 +51,10 @@ public class AdminCommentsService {
     // 댓글 신고 목록
     public CommentsListResponse showreportcomments(Pageable page) {
 
-        Page<CommentsEntity> commentsEntityList = commentsRepository.findAllByCnsrsOrderByIdDesc(3, page);
+        Page<Comments> commentsEntityList = commentsRepository.findAllByCnsrsOrderByIdDesc(3, page);
         List<CommentsViewResponse> commentsViewResponseList = new ArrayList<>();
 
-        for (CommentsEntity commentsEntity : commentsEntityList) {
+        for (Comments commentsEntity : commentsEntityList) {
                 commentsViewResponseList.add(
                         CommentsViewResponse.builder()
                                 .id(commentsEntity.getId())

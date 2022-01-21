@@ -1,30 +1,26 @@
-package com.example.secretforest_project.Entity.Post;
+package com.example.secretforest_project.Entity.Comments;
 
+import com.example.secretforest_project.Entity.Post.Post;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Entity
-public class PostEntity { // 게시글
+public class Comments { // 댓글
 
     @Id
-    @Column(name = "post_id")
+    @Column(name = "comments_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 100)
-    private String title;
+    @Column(nullable = false, length = 500)
+    private String comment;
 
-    @Column(nullable = false, length = 2000)
-    private String content;
-
-    @Column(nullable = false, length = 15)
+    @Column(nullable = false)
     private String writer;
 
     @Column(nullable = false, length = 60)
@@ -32,5 +28,9 @@ public class PostEntity { // 게시글
 
     @Column(nullable = false, length = 1)
     private Integer cnsrs; // censorship(검열)
+
+    @ManyToOne
+    @JoinColumn(name = "post_id")
+    private Post post;
 
 }
