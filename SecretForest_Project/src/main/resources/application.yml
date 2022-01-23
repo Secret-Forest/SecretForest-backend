@@ -1,0 +1,26 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/forestproject?serverTimezone=UT
+    username: root
+    password: rhaxoddlqkqh!
+
+  jpa:
+    hibernate:
+      ddl-auto: update #create update none
+
+auth:
+  jwt:
+    secret: ${JWT_SECRET:secret}
+    exp:
+      access: ${JWT_ACCESS_EXP:12345}
+      refresh: ${JWT_REFRESH_EXP:2345678}
