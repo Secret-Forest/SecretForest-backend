@@ -1,5 +1,7 @@
 package com.example.secretforest_project.Config;
 
+import com.example.secretforest_project.Jwt.FilterConfig;
+import com.example.secretforest_project.Jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +17,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @RequiredArgsConstructor
 @EnableWebSecurity // 시큐리티 활성화 -> 기본 스프링 필터체인에 등록
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
+
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() { // 비밀번호 암호화
@@ -47,7 +51,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
                 .antMatchers(HttpMethod.GET, "/admin/board").authenticated()
                 
-                .anyRequest().permitAll();// 나머지 url들은(.anyRequest()) 무조건 접근 허용(.permitAll())한다.
+                .anyRequest().permitAll()// 나머지 url들은(.anyRequest()) 무조건 접근 허용(.permitAll())한다.
+
+                .and().apply(new FilterConfig(jwtTokenProvider));
     }
 
 }
