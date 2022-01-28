@@ -9,10 +9,10 @@ server:
 
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${DB_URL}?serverTimezone=UT
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://${AWS_ENDPONT}:3306/${DB_SCHEMA}
     username: ${DB_NAME}
-    password: ${DB_PASSWROD}
+    password: ${DB_PASSWORD}
 
   jpa:
     hibernate:
@@ -20,7 +20,7 @@ spring:
 
 auth:
   jwt:
-    secret: ${JWT_SECRET:secret}
+    secret: ${JWT_SECRET}
     exp:
-      access: ${JWT_ACCESS_EXP:12345}
-      refresh: ${JWT_REFRESH_EXP:2345678}
+      access: ${JWT_ACCESS_EXP}
+      refresh: ${JWT_REFRESH_EXP}
