@@ -1,4 +1,4 @@
-package com.example.secretforest_project.Entity.Account;
+package com.example.secretforest_project.Entity.Admin;
 
 import lombok.*;
 

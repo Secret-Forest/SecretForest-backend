@@ -2,11 +2,10 @@ package com.example.secretforest_project.Service;
 
 import com.example.secretforest_project.Dto.JwtToken;
 import com.example.secretforest_project.Dto.Request.AdminReqest;
-import com.example.secretforest_project.Entity.Account.Admin;
-import com.example.secretforest_project.Entity.Account.AdminRepository;
+import com.example.secretforest_project.Entity.Admin.Admin;
+import com.example.secretforest_project.Entity.Admin.AdminRepository;
 import com.example.secretforest_project.Entity.RefreshToken.RefreshToken;
 import com.example.secretforest_project.Entity.RefreshToken.RefreshTokenRepository;
-import com.example.secretforest_project.Exception.ConflictException;
 import com.example.secretforest_project.Exception.NotFoundException;
 import com.example.secretforest_project.Exception.UnauthorizedException;
 import com.example.secretforest_project.Jwt.JwtTokenProvider;

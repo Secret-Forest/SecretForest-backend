@@ -1,6 +1,6 @@
 package com.example.secretforest_project.Jwt.Details;
 
-import com.example.secretforest_project.Entity.Account.Admin;
+import com.example.secretforest_project.Entity.Admin.Admin;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

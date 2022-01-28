@@ -1,7 +1,7 @@
 package com.example.secretforest_project.Service.Util;
 
-import com.example.secretforest_project.Entity.Account.Admin;
-import com.example.secretforest_project.Entity.Account.AdminRepository;
+import com.example.secretforest_project.Entity.Admin.Admin;
+import com.example.secretforest_project.Entity.Admin.AdminRepository;
 import com.example.secretforest_project.Exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

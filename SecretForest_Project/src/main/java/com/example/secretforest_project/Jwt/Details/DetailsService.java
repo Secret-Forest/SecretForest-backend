@@ -1,6 +1,6 @@
 package com.example.secretforest_project.Jwt.Details;
 
-import com.example.secretforest_project.Entity.Account.AdminRepository;
+import com.example.secretforest_project.Entity.Admin.AdminRepository;
 import com.example.secretforest_project.Exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
