@@ -20,6 +20,6 @@ public class CommentsUpdateRequest {
 
     @NotBlank
     @Size(min = 6, max = 20)
-    private String pwd;
+    private String password;
 
 }

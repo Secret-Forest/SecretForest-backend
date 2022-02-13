@@ -27,11 +27,11 @@ public class CommentsResponse {
 
     @NotBlank
     @Size(min = 6, max = 20)
-    private String pwd;
+    private String password;
 
     @NotBlank
     @Size(max = 1)
-    private Integer cnsrs; // censorship(검열)
+    private Integer censorship;
 
 
 

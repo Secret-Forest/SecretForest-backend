@@ -2,11 +2,12 @@ package com.example.secretforest_project.Service;
 
 import com.example.secretforest_project.Dto.Request.PostRequest;
 import com.example.secretforest_project.Dto.Request.PostUpdateRequest;
-import com.example.secretforest_project.Dto.Request.PwdRequest;
+import com.example.secretforest_project.Dto.Request.PasswordRequest;
 import com.example.secretforest_project.Entity.Post.Post;
 import com.example.secretforest_project.Entity.Post.PostRepository;
 import com.example.secretforest_project.Exception.ConflictException;
 import com.example.secretforest_project.Exception.NotFoundException;
+import com.example.secretforest_project.Service.Util.MatchesPassword;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,9 +17,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class PostService {
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder encoder;
+
     private final PostRepository postRepository;
+
+    private final MatchesPassword matchesPassword;
 
     // 게시글 저장
     public void savepost(PostRequest postRequest) {
@@ -27,8 +30,8 @@ public class PostService {
                 .title(postRequest.getTitle())
                 .content(postRequest.getContent())
                 .writer(postRequest.getWriter())
-                .pwd(passwordEncoder.encode(postRequest.getPwd()))
-                .cnsrs(1)
+                .password(encoder.encode(postRequest.getPassword()))
+                .censorship(1)
                 .build();
 
         postRepository.save(postEntity);
@@ -41,18 +44,15 @@ public class PostService {
         Post postEntity = postRepository.findById(post_id)
                 .orElseThrow(NotFoundException::new);
 
-        if (!passwordEncoder.matches(postUpdateRequest.getPwd(), postEntity.getPwd())) {
-            // matches(비교할 비밀번호, db에 저장되어 있는 비밀번호)
-            throw new ConflictException();
-        }
+        matchesPassword.matchesPassword(postUpdateRequest.getPassword(), postEntity.getPassword());
 
         Post build = Post.builder()
                 .id(postEntity.getId())
                 .title(postUpdateRequest.getTitle())
                 .content(postUpdateRequest.getContent())
                 .writer(postEntity.getWriter())
-                .pwd(postEntity.getPwd())
-                .cnsrs(2)
+                .password(postEntity.getPassword())
+                .censorship(2)
                 .build();
 
         postRepository.save(build);
@@ -60,15 +60,12 @@ public class PostService {
     }
 
     // 게시글 삭제
-    public void delpost(Long post_id, PwdRequest pwdRequest) {
+    public void delpost(Long post_id, PasswordRequest pwdRequest) {
 
         Post postEntity = postRepository.findById(post_id)
                 .orElseThrow(ConflictException::new);
 
-        if (!passwordEncoder.matches(pwdRequest.getPwd(), postEntity.getPwd())) {
-            // matches(비교할 비밀번호, db에 저장되어 있는 비밀번호)
-            throw new ConflictException();
-        }
+        matchesPassword.matchesPassword(pwdRequest.getPassword(), postEntity.getPassword());
 
         postRepository.delete(postEntity);
 
@@ -85,8 +82,8 @@ public class PostService {
                 .title(postEntity.getTitle())
                 .content(postEntity.getContent())
                 .writer(postEntity.getWriter())
-                .pwd(postEntity.getPwd())
-                .cnsrs(3)
+                .password(postEntity.getPassword())
+                .censorship(3)
                 .build();
 
         postRepository.save(build);

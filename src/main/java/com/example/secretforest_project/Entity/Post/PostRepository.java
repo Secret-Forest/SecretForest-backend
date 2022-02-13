@@ -12,7 +12,7 @@ public interface PostRepository extends CrudRepository<Post, Long> {
     Page<Post> findAllByWriterOrderByWriter(String writer, Pageable page);
     Page<Post> findAllByTitleContainingOrderByTitle(String title, Pageable page);
     Page<Post> findAllByOrderByIdDesc(Pageable page);
-    Page<Post> findAllByCnsrsOrderByIdDesc(Integer cnsrs, Pageable page);
-    Page<Post> findAllByCnsrsBetweenOrderByIdDesc(Integer start, Integer end, Pageable page);
+    Page<Post> findAllByCensorshipOrderByIdDesc(Integer Censorship, Pageable page);
+    Page<Post> findAllByCensorshipBetweenOrderByIdDesc(Integer start, Integer end, Pageable page);
 
 }

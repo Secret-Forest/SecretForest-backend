@@ -1,7 +1,7 @@
 package com.example.secretforest_project.Service;
 
-import com.example.secretforest_project.Dto.Response.CnsrsPostListResponse;
-import com.example.secretforest_project.Dto.Response.CnsrsPostResponse;
+import com.example.secretforest_project.Dto.Response.CensorshipPostListResponse;
+import com.example.secretforest_project.Dto.Response.CensorshipPostResponse;
 import com.example.secretforest_project.Dto.Response.PostListResponse;
 import com.example.secretforest_project.Dto.Response.PostViewResponse;
 import com.example.secretforest_project.Entity.Post.Post;
@@ -32,8 +32,8 @@ public class AdminPostService {
                 .title(postEntity.getTitle())
                 .content(postEntity.getContent())
                 .writer(postEntity.getWriter())
-                .pwd(postEntity.getPwd())
-                .cnsrs(0)
+                .password(postEntity.getPassword())
+                .censorship(0)
                 .build();
 
         postRepository.save(build);
@@ -51,24 +51,24 @@ public class AdminPostService {
     }
 
     // 게시글 검열 목록
-    public CnsrsPostListResponse showpost(Pageable page) {
+    public CensorshipPostListResponse showpost(Pageable page) {
 
-        Page<Post> postEntityList = postRepository.findAllByCnsrsBetweenOrderByIdDesc(1,2, page);
-        List<CnsrsPostResponse> cnsrsPostResponses = new ArrayList<>();
+        Page<Post> postEntityList = postRepository.findAllByCensorshipBetweenOrderByIdDesc(1,2, page);
+        List<CensorshipPostResponse> censorshipPostResponses = new ArrayList<>();
 
         for (Post postEntity : postEntityList) {
-            cnsrsPostResponses.add(
-                    CnsrsPostResponse.builder()
+            censorshipPostResponses.add(
+                    CensorshipPostResponse.builder()
                             .id(postEntity.getId())
-                            .cnsrs(postEntity.getCnsrs())
+                            .censorship(postEntity.getCensorship())
                             .title(postEntity.getTitle())
                             .writer(postEntity.getWriter())
                             .build()
             );
         }
 
-        return CnsrsPostListResponse.builder()
-                .cnsrsPostResponses(cnsrsPostResponses)
+        return CensorshipPostListResponse.builder()
+                .censorshipPostResponses(censorshipPostResponses)
                 .build();
 
     }
@@ -76,7 +76,7 @@ public class AdminPostService {
     // 게시글 신고 목록
     public PostListResponse showreportpost(Pageable page) {
 
-        Page<Post> postEntityList = postRepository.findAllByCnsrsOrderByIdDesc(3, page);
+        Page<Post> postEntityList = postRepository.findAllByCensorshipOrderByIdDesc(3, page);
         List<PostViewResponse> postViewDtos = new ArrayList<>();
 
         for (Post postEntity : postEntityList) {

@@ -1,16 +1,16 @@
 package com.example.secretforest_project.Controller.AdminController;
 
-import com.example.secretforest_project.Dto.Response.CnsrsPostListResponse;
+import com.example.secretforest_project.Dto.Response.CensorshipPostListResponse;
 import com.example.secretforest_project.Service.AdminPostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/admin/cnsrs")
+@RequestMapping("/admin/Censorship")
 @RequiredArgsConstructor
 @RestController
-public class CnsrsController {
+public class CensorshipController {
 
     private final AdminPostService adminPostService;
 
@@ -31,7 +31,7 @@ public class CnsrsController {
     // 검열해야하는 게시물 목록
     @GetMapping("/board")
     @ResponseStatus(HttpStatus.OK)
-    public CnsrsPostListResponse ShowPost(Pageable page) {
+    public CensorshipPostListResponse ShowPost(Pageable page) {
         return adminPostService.showpost(page);
     }
 

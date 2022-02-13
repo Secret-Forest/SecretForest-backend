@@ -11,8 +11,8 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CnsrsPostListResponse {
+public class CensorshipPostListResponse {
 
-    private List<CnsrsPostResponse> cnsrsPostResponses;
+    private List<CensorshipPostResponse> censorshipPostResponses;
 
 }

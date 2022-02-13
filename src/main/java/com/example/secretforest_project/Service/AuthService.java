@@ -9,6 +9,7 @@ import com.example.secretforest_project.Entity.RefreshToken.RefreshTokenReposito
 import com.example.secretforest_project.Exception.NotFoundException;
 import com.example.secretforest_project.Exception.UnauthorizedException;
 import com.example.secretforest_project.Jwt.JwtTokenProvider;
+import com.example.secretforest_project.Service.Util.MatchesPassword;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,21 +20,20 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class AuthService {
 
-    private final PasswordEncoder encoder;
+    private final MatchesPassword matchesPassword;
+
     private final AdminRepository accountRepository;
     private final RefreshTokenRepository refreshTokenRepository;
-    private final JwtTokenProvider jwtTokenProvider;
 
+    private final JwtTokenProvider jwtTokenProvider;
 
     // 로그인
     public JwtToken login (AdminReqest reqest) {
 
-        Admin admin = accountRepository.findByAminId(reqest.getAccountId())
+        Admin admin = accountRepository.findByAminId(reqest.getAdminId())
                 .orElseThrow(NotFoundException::new);
 
-        if(!encoder.matches(reqest.getPwd(), admin.getPwd())) {
-            throw new NotFoundException();
-        }
+        matchesPassword.matchesPassword(reqest.getPassword(), admin.getPassword());
 
         // 토큰 발행
         return JwtToken.builder()

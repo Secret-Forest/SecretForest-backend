@@ -1,8 +1,7 @@
 package com.example.secretforest_project.Controller.NoticeboardController;
 
-import com.example.secretforest_project.Dto.Request.CommentsRequest;
 import com.example.secretforest_project.Dto.Request.CommentsUpdateRequest;
-import com.example.secretforest_project.Dto.Request.PwdRequest;
+import com.example.secretforest_project.Dto.Request.PasswordRequest;
 import com.example.secretforest_project.Service.CommentsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -29,7 +28,7 @@ public class CommentsController {
     @DeleteMapping
     @ResponseStatus(HttpStatus.OK) // 200 요청을 정상적으로 처리함
     public void DelComments(@PathVariable("commentsid") Long comments_id,
-                            @Valid @RequestBody PwdRequest pwdRequest) {
+                            @Valid @RequestBody PasswordRequest pwdRequest) {
         commentsService.delcomments(pwdRequest, comments_id);
     }
 

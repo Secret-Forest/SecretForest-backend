@@ -18,7 +18,7 @@ public class Admin {
     @Column(name = "admin_Id",nullable = false, length = 10)
     private String aminId;
 
-    @Column(name = "admin_pwd",nullable = false)
-    private String pwd;
+    @Column(nullable = false)
+    private String password;
 
 }

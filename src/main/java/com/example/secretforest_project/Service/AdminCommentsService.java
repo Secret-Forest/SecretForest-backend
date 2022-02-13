@@ -30,8 +30,8 @@ public class AdminCommentsService {
                 .post(commentsEntity.getPost())
                 .writer(commentsEntity.getWriter())
                 .comment(commentsEntity.getComment())
-                .pwd(commentsEntity.getPwd())
-                .cnsrs(0)
+                .password(commentsEntity.getPassword())
+                .censorship(0)
                 .build();
 
         commentsRepository.save(build);
@@ -51,7 +51,7 @@ public class AdminCommentsService {
     // 댓글 신고 목록
     public CommentsListResponse showreportcomments(Pageable page) {
 
-        Page<Comments> commentsEntityList = commentsRepository.findAllByCnsrsOrderByIdDesc(3, page);
+        Page<Comments> commentsEntityList = commentsRepository.findAllByCensorshipOrderByIdDesc(3, page);
         List<CommentsViewResponse> commentsViewResponseList = new ArrayList<>();
 
         for (Comments commentsEntity : commentsEntityList) {

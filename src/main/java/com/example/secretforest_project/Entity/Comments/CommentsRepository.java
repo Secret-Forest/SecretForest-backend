@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface CommentsRepository extends CrudRepository<Comments, Long> {
 
-    Page<Comments> findAllByCnsrsOrderByIdDesc(Integer cnsrs, Pageable page);
+    Page<Comments> findAllByCensorshipOrderByIdDesc(Integer Censorship, Pageable page);
     List<Comments> findAllByPost(Post id);
 
 }

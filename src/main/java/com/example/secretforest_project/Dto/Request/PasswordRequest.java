@@ -1,4 +1,4 @@
-package com.example.secretforest_project.Dto.Response;
+package com.example.secretforest_project.Dto.Request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,23 +6,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CnsrsPostResponse {
+public class PasswordRequest {
 
     @NotBlank
-    private Long id;
-
-    @NotBlank
-    private Integer cnsrs;
-
-    @NotBlank
-    private String title;
-
-    @NotBlank
-    private String writer;
+    @Size(min = 6, max = 20)
+    private String password;
 
 }

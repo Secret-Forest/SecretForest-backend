@@ -26,9 +26,9 @@ public class Post { // 게시글
     private String writer;
 
     @Column(nullable = false, length = 60)
-    private String pwd;
+    private String password;
 
     @Column(nullable = false, length = 1)
-    private Integer cnsrs; // censorship(검열)
+    private Integer censorship;
 
 }
