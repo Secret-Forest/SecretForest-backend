@@ -1,6 +1,5 @@
 package com.example.secretforest_project.Dto.Response;
 
-import com.example.secretforest_project.Dto.Request.CommentsRequest;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

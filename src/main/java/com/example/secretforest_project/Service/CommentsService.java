@@ -7,11 +7,9 @@ import com.example.secretforest_project.Entity.Comments.Comments;
 import com.example.secretforest_project.Entity.Comments.CommentsRepository;
 import com.example.secretforest_project.Entity.Post.Post;
 import com.example.secretforest_project.Entity.Post.PostRepository;
-import com.example.secretforest_project.Exception.ConflictException;
 import com.example.secretforest_project.Exception.NotFoundException;
 import com.example.secretforest_project.Service.Util.MatchesPassword;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
