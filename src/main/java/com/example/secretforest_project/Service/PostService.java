@@ -25,15 +25,15 @@ public class PostService {
     // 게시글 저장
     public void savepost(PostRequest postRequest) {
 
-        Post postEntity = Post.builder()
-                .title(postRequest.getTitle())
-                .content(postRequest.getContent())
-                .writer(postRequest.getWriter())
-                .password(encoder.encode(postRequest.getPassword()))
-                .censorship(1)
-                .build();
-
-        postRepository.save(postEntity);
+        postRepository.save(
+                Post.builder()
+                        .title(postRequest.getTitle())
+                        .content(postRequest.getContent())
+                        .writer(postRequest.getWriter())
+                        .password(encoder.encode(postRequest.getPassword()))
+                        .censorship(1)
+                        .build()
+        );
 
     }
 
@@ -51,16 +51,16 @@ public class PostService {
         Post postEntity = postRepository.findById(postId)
                 .orElseThrow(NotFoundException::new);
 
-        Post build = Post.builder()
-                .id(postEntity.getId())
-                .title(postUpdateRequest.getTitle())
-                .content(postUpdateRequest.getContent())
-                .writer(postEntity.getWriter())
-                .password(postEntity.getPassword())
-                .censorship(2)
-                .build();
-
-        postRepository.save(build);
+        postRepository.save(
+                Post.builder()
+                        .id(postEntity.getId())
+                        .title(postUpdateRequest.getTitle())
+                        .content(postUpdateRequest.getContent())
+                        .writer(postEntity.getWriter())
+                        .password(postEntity.getPassword())
+                        .censorship(2)
+                        .build()
+        );
 
     }
 
@@ -82,16 +82,16 @@ public class PostService {
         Post postEntity = postRepository.findById(postId)
                 .orElseThrow(NotFoundException::new);
 
-        Post build = Post.builder()
-                .id(postEntity.getId())
-                .title(postEntity.getTitle())
-                .content(postEntity.getContent())
-                .writer(postEntity.getWriter())
-                .password(postEntity.getPassword())
-                .censorship(3)
-                .build();
-
-        postRepository.save(build);
+        postRepository.save(
+                Post.builder()
+                        .id(postEntity.getId())
+                        .title(postEntity.getTitle())
+                        .content(postEntity.getContent())
+                        .writer(postEntity.getWriter())
+                        .password(postEntity.getPassword())
+                        .censorship(3)
+                        .build()
+        );
 
     }
 

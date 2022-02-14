@@ -30,15 +30,15 @@ public class CommentsService {
         Post postEntity = postRepository.findById(postId)
                 .orElseThrow(NotFoundException::new);
 
-        Comments commentsEntity = Comments.builder()
-                .post(postEntity)
-                .writer(commentsRequest.getWriter())
-                .comment(commentsRequest.getComment())
-                .password(encoder.encode(commentsRequest.getPassword()))
-                .censorship(0)
-                .build();
-
-        commentsRepository.save(commentsEntity);
+        commentsRepository.save(
+                Comments.builder()
+                        .post(postEntity)
+                        .writer(commentsRequest.getWriter())
+                        .comment(commentsRequest.getComment())
+                        .password(encoder.encode(commentsRequest.getPassword()))
+                        .censorship(0)
+                        .build()
+        );
 
     }
 
@@ -56,16 +56,16 @@ public class CommentsService {
         Comments commentsEntity = commentsRepository.findById(commentId)
                 .orElseThrow(NotFoundException::new);
 
-        Comments build = Comments.builder()
-                .id(commentsEntity.getId())
-                .post(commentsEntity.getPost())
-                .writer(commentsEntity.getWriter())
-                .comment(commentsUpdateRequest.getComment())
-                .password(commentsEntity.getPassword())
-                .censorship(0)
-                .build();
-
-        commentsRepository.save(build);
+        commentsRepository.save(
+                Comments.builder()
+                        .id(commentsEntity.getId())
+                        .post(commentsEntity.getPost())
+                        .writer(commentsEntity.getWriter())
+                        .comment(commentsUpdateRequest.getComment())
+                        .password(commentsEntity.getPassword())
+                        .censorship(0)
+                        .build()
+        );
 
     }
 
@@ -87,16 +87,17 @@ public class CommentsService {
         Comments commentsEntity = commentsRepository.findById(commentId)
                 .orElseThrow(NotFoundException::new);
 
-        Comments build = Comments.builder()
-                .id(commentsEntity.getId())
-                .post(commentsEntity.getPost())
-                .writer(commentsEntity.getWriter())
-                .comment(commentsEntity.getComment())
-                .password(commentsEntity.getPassword())
-                .censorship(3)
-                .build();
+        commentsRepository.save(
+                Comments.builder()
+                        .id(commentsEntity.getId())
+                        .post(commentsEntity.getPost())
+                        .writer(commentsEntity.getWriter())
+                        .comment(commentsEntity.getComment())
+                        .password(commentsEntity.getPassword())
+                        .censorship(3)
+                        .build()
 
-        commentsRepository.save(build);
+        );
 
     }
 
