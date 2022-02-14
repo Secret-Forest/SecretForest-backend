@@ -42,13 +42,19 @@ public class CommentsService {
 
     }
 
+    public void match(Long commentsid, PasswordRequest passwordRequest) {
+
+        Comments commentsEntity = commentsRepository.findById(commentsid)
+                .orElseThrow(NotFoundException::new);
+
+        matchesPassword.matchesPassword(passwordRequest.getPassword(), commentsEntity.getPassword());
+    }
+
     // 댓글 수정
     public void updatecomments(Long commentsid, CommentsUpdateRequest commentsUpdateRequest) {
 
         Comments commentsEntity = commentsRepository.findById(commentsid)
                 .orElseThrow(NotFoundException::new);
-
-        matchesPassword.matchesPassword(commentsUpdateRequest.getPassword(), commentsEntity.getPassword());
 
         Comments build = Comments.builder()
                 .id(commentsEntity.getId())

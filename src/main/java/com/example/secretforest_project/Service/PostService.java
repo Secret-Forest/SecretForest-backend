@@ -37,13 +37,19 @@ public class PostService {
 
     }
 
+    public void match(Long post_id, PasswordRequest passwordRequest) {
+
+        Post postEntity = postRepository.findById(post_id)
+                .orElseThrow(NotFoundException::new);
+
+        matchesPassword.matchesPassword(passwordRequest.getPassword(), postEntity.getPassword());
+    }
+
     // 게시글 수정
     public void updatepost(Long post_id, PostUpdateRequest postUpdateRequest) {
 
         Post postEntity = postRepository.findById(post_id)
                 .orElseThrow(NotFoundException::new);
-
-        matchesPassword.matchesPassword(postUpdateRequest.getPassword(), postEntity.getPassword());
 
         Post build = Post.builder()
                 .id(postEntity.getId())

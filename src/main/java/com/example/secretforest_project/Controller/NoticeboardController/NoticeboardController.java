@@ -1,6 +1,7 @@
 package com.example.secretforest_project.Controller.NoticeboardController;
 
 import com.example.secretforest_project.Dto.Request.CommentsRequest;
+import com.example.secretforest_project.Dto.Request.PasswordRequest;
 import com.example.secretforest_project.Dto.Request.PostRequest;
 import com.example.secretforest_project.Dto.Response.PostListResponse;
 import com.example.secretforest_project.Service.CommentsService;
@@ -63,6 +64,22 @@ public class NoticeboardController {
     public void SeveComments(@PathVariable("postid") Long post_id,
                              @Valid @RequestBody CommentsRequest commentsRequest) {
         commentsService.sevecomments(post_id, commentsRequest);
+    }
+
+    // 게시글 패스워도 검증
+    @GetMapping("/match/{postid}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void matchesPostPassword(@PathVariable("postid") Long post_id,
+                                   @RequestBody @Valid PasswordRequest passwordRequest) {
+        postService.match(post_id,passwordRequest);
+    }
+
+    // 게시글 패스워도 검증
+    @GetMapping("/match/{commentid}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void matchesCommentPassword(@PathVariable("commentid") Long comment_id,
+                                   @RequestBody @Valid PasswordRequest passwordRequest) {
+        commentsService.match(comment_id, passwordRequest);
     }
 
     // 게시글 신고
