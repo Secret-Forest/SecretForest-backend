@@ -25,9 +25,9 @@ public class CommentsService {
     private final MatchesPassword matchesPassword;
 
     // 댓글 저장
-    public void sevecomments(Long postid, CommentsRequest commentsRequest) {
+    public void sevecomments(Long postId, CommentsRequest commentsRequest) {
 
-        Post postEntity = postRepository.findById(postid)
+        Post postEntity = postRepository.findById(postId)
                 .orElseThrow(NotFoundException::new);
 
         Comments commentsEntity = Comments.builder()
@@ -42,18 +42,18 @@ public class CommentsService {
 
     }
 
-    public void match(Long commentsid, PasswordRequest passwordRequest) {
+    public void match(Long commentId, PasswordRequest passwordRequest) {
 
-        Comments commentsEntity = commentsRepository.findById(commentsid)
+        Comments commentsEntity = commentsRepository.findById(commentId)
                 .orElseThrow(NotFoundException::new);
 
         matchesPassword.matchesPassword(passwordRequest.getPassword(), commentsEntity.getPassword());
     }
 
     // 댓글 수정
-    public void updatecomments(Long commentsid, CommentsUpdateRequest commentsUpdateRequest) {
+    public void updatecomments(Long commentId, CommentsUpdateRequest commentsUpdateRequest) {
 
-        Comments commentsEntity = commentsRepository.findById(commentsid)
+        Comments commentsEntity = commentsRepository.findById(commentId)
                 .orElseThrow(NotFoundException::new);
 
         Comments build = Comments.builder()
@@ -70,9 +70,9 @@ public class CommentsService {
     }
 
     // 댓글 삭제
-    public void delcomments(PasswordRequest pwdRequest, Long commentsid) {
+    public void delcomments(PasswordRequest pwdRequest, Long commentId) {
 
-        Comments commentsEntity = commentsRepository.findById(commentsid)
+        Comments commentsEntity = commentsRepository.findById(commentId)
                 .orElseThrow(NotFoundException::new);
 
         matchesPassword.matchesPassword(pwdRequest.getPassword(), commentsEntity.getPassword());
@@ -82,9 +82,9 @@ public class CommentsService {
     }
 
     // 댓글 신고
-    public void reportcomments(Long comments_id) {
+    public void reportcomments(Long commentId) {
 
-        Comments commentsEntity = commentsRepository.findById(comments_id)
+        Comments commentsEntity = commentsRepository.findById(commentId)
                 .orElseThrow(NotFoundException::new);
 
         Comments build = Comments.builder()

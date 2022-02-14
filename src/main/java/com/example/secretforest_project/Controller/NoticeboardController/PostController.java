@@ -31,24 +31,24 @@ public class PostController {
     // 게시글 보기
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public PostResponse ShowPost(@PathVariable("postid") Long postid) {
-        return showPostService.showpost(postid);
+    public PostResponse ShowPost(@PathVariable("postid") Long postId) {
+        return showPostService.showpost(postId);
     }
 
     // 게시글 수정
     @PutMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void UpdatePost(@PathVariable("postid") Long post_id,
+    public void UpdatePost(@PathVariable("postid") Long postId,
                            @Valid @RequestBody PostUpdateRequest postUpdateRequest) {
-        postService.updatepost(post_id, postUpdateRequest);
+        postService.updatepost(postId, postUpdateRequest);
     }
 
     // 게시글 삭제
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void DelPost(@PathVariable("postid") Long post_id,
+    public void DelPost(@PathVariable("postid") Long postId,
                         @Valid @RequestBody PasswordRequest pwdRequest) {
-        postService.delpost(post_id, pwdRequest);
+        postService.delpost(postId, pwdRequest);
     }
 
 }

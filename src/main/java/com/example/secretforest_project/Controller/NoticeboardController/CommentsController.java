@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RequiredArgsConstructor
-@RequestMapping("/comments/{commentsid}")
+@RequestMapping("/comment/{commentid}")
 @RestController
 public class CommentsController {
 
@@ -26,17 +26,17 @@ public class CommentsController {
     // 댓글 수정
     @PutMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void UpdateComments (@PathVariable("commentsid") Long comments_id,
+    public void UpdateComments (@PathVariable("commentid") Long commentId,
                                 @Valid @RequestBody CommentsUpdateRequest commentsUpdateRequest) {
-        commentsService.updatecomments(comments_id, commentsUpdateRequest);
+        commentsService.updatecomments(commentId, commentsUpdateRequest);
     }
 
     // 댓글 삭제
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void DelComments(@PathVariable("commentsid") Long comments_id,
+    public void DelComments(@PathVariable("commentid") Long commentId,
                             @Valid @RequestBody PasswordRequest pwdRequest) {
-        commentsService.delcomments(pwdRequest, comments_id);
+        commentsService.delcomments(pwdRequest, commentId);
     }
 
 }

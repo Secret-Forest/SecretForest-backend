@@ -25,8 +25,8 @@ public class AuthController {
     // 로그인
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.CREATED)
-    public JwtToken login(@Valid @RequestBody AdminReqest reqest) {
-        return authService.login(reqest);
+    public JwtToken login(@Valid @RequestBody AdminReqest adminReqest) {
+        return authService.login(adminReqest);
     }
 
     // 토큰 재발급

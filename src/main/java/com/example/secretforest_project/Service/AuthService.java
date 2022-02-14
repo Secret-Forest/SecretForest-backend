@@ -27,12 +27,12 @@ public class AuthService {
     private final JwtTokenProvider jwtTokenProvider;
 
     // 로그인
-    public JwtToken login (AdminReqest reqest) {
+    public JwtToken login (AdminReqest adminReqest) {
 
-        Admin admin = accountRepository.findByAminId(reqest.getAdminId())
+        Admin admin = accountRepository.findByAminId(adminReqest.getAdminId())
                 .orElseThrow(NotFoundException::new);
 
-        matchesPassword.matchesPassword(reqest.getPassword(), admin.getPassword());
+        matchesPassword.matchesPassword(adminReqest.getPassword(), admin.getPassword());
 
         // 토큰 발행
         return JwtToken.builder()

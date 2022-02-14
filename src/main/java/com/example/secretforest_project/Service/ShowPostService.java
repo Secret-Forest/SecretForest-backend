@@ -70,9 +70,9 @@ public class ShowPostService {
     }
 
     // 게시글 보기
-    public PostResponse showpost(Long postid) {
+    public PostResponse showpost(Long postId) {
 
-        Post postEntity = postRepository.findById(postid)
+        Post postEntity = postRepository.findById(postId)
                 .orElseThrow(NotFoundException::new);
 
         List<Comments> commentsEntityList = commentsRepository.findAllByPost(postEntity);

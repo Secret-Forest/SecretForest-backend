@@ -59,41 +59,41 @@ public class NoticeboardController {
     }
 
     // 댓글 작성
-    @PostMapping("comments/{postid}")
+    @PostMapping("comment/{postid}")
     @ResponseStatus(HttpStatus.CREATED)
-    public void SeveComments(@PathVariable("postid") Long post_id,
+    public void SeveComments(@PathVariable("postid") Long postId,
                              @Valid @RequestBody CommentsRequest commentsRequest) {
-        commentsService.sevecomments(post_id, commentsRequest);
+        commentsService.sevecomments(postId, commentsRequest);
     }
 
     // 게시글 패스워도 검증
     @GetMapping("/match/{postid}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void matchesPostPassword(@PathVariable("postid") Long post_id,
+    public void matchesPostPassword(@PathVariable("postid") Long postId,
                                    @RequestBody @Valid PasswordRequest passwordRequest) {
-        postService.match(post_id,passwordRequest);
+        postService.match(postId,passwordRequest);
     }
 
     // 게시글 패스워도 검증
     @GetMapping("/match/{commentid}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void matchesCommentPassword(@PathVariable("commentid") Long comment_id,
+    public void matchesCommentPassword(@PathVariable("commentid") Long commentId,
                                    @RequestBody @Valid PasswordRequest passwordRequest) {
-        commentsService.match(comment_id, passwordRequest);
+        commentsService.match(commentId, passwordRequest);
     }
 
     // 게시글 신고
     @PutMapping("/report/board/{postid}")
     @ResponseStatus(HttpStatus.CREATED)
-    public void ReportPost (@PathVariable("postid") Long post_id) {
-        postService.reportpost(post_id);
+    public void ReportPost (@PathVariable("postid") Long postId) {
+        postService.reportpost(postId);
     }
 
     // 댓글 신고
-    @PutMapping("/report/comments/{commentsid}")
+    @PutMapping("/report/comments/{commentid}")
     @ResponseStatus(HttpStatus.CREATED)
-    public void ReportComments (@PathVariable("commentsid") Long comments_id) {
-        commentsService.reportcomments(comments_id);
+    public void ReportComments (@PathVariable("commentid") Long commentId) {
+        commentsService.reportcomments(commentId);
     }
 
 }

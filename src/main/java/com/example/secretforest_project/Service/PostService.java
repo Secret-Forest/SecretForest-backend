@@ -37,18 +37,18 @@ public class PostService {
 
     }
 
-    public void match(Long post_id, PasswordRequest passwordRequest) {
+    public void match(Long postId, PasswordRequest passwordRequest) {
 
-        Post postEntity = postRepository.findById(post_id)
+        Post postEntity = postRepository.findById(postId)
                 .orElseThrow(NotFoundException::new);
 
         matchesPassword.matchesPassword(passwordRequest.getPassword(), postEntity.getPassword());
     }
 
     // 게시글 수정
-    public void updatepost(Long post_id, PostUpdateRequest postUpdateRequest) {
+    public void updatepost(Long postId, PostUpdateRequest postUpdateRequest) {
 
-        Post postEntity = postRepository.findById(post_id)
+        Post postEntity = postRepository.findById(postId)
                 .orElseThrow(NotFoundException::new);
 
         Post build = Post.builder()
@@ -65,9 +65,9 @@ public class PostService {
     }
 
     // 게시글 삭제
-    public void delpost(Long post_id, PasswordRequest pwdRequest) {
+    public void delpost(Long postId, PasswordRequest pwdRequest) {
 
-        Post postEntity = postRepository.findById(post_id)
+        Post postEntity = postRepository.findById(postId)
                 .orElseThrow(ConflictException::new);
 
         matchesPassword.matchesPassword(pwdRequest.getPassword(), postEntity.getPassword());
@@ -77,9 +77,9 @@ public class PostService {
     }
 
     // 게시글 신고
-    public void reportpost(Long post_id) {
+    public void reportpost(Long postId) {
 
-        Post postEntity = postRepository.findById(post_id)
+        Post postEntity = postRepository.findById(postId)
                 .orElseThrow(NotFoundException::new);
 
         Post build = Post.builder()

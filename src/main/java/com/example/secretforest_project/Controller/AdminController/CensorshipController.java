@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 
-@RequestMapping("/admin/Censorship")
+@RequestMapping("/admin/censorship")
 @RequiredArgsConstructor
 @RestController
 public class CensorshipController {
@@ -25,15 +25,15 @@ public class CensorshipController {
     // 게시글 검열 - 통과
     @PutMapping("/{postid}/pass")
     @ResponseStatus(HttpStatus.CREATED)
-    public void PostOk(@PathVariable("postid") Long post_id) {
-        adminPostService.postok(post_id);
+    public void PostOk(@PathVariable("postid") Long postId) {
+        adminPostService.postok(postId);
     }
 
     // 게시글 검열 - 삭제
     @DeleteMapping("/{postid}/elmnt")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void PostNo(@PathVariable("postid") Long post_id) {
-        adminPostService.postno(post_id);
+    public void PostNo(@PathVariable("postid") Long postId) {
+        adminPostService.postno(postId);
     }
 
     // 검열해야하는 게시물 목록

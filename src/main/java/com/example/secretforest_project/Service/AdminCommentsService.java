@@ -20,9 +20,9 @@ public class AdminCommentsService {
     private final CommentsRepository commentsRepository;
 
     // 댓글 검열 통과
-    public void commentsok(Long comments_id) {
+    public void commentsok(Long commentId) {
 
-        Comments commentsEntity = commentsRepository.findById(comments_id)
+        Comments commentsEntity = commentsRepository.findById(commentId)
                 .orElseThrow(NotFoundException::new);
 
         Comments build = Comments.builder()
@@ -39,9 +39,9 @@ public class AdminCommentsService {
     }
 
     // 댓글 검열 삭제
-    public void commentsno(Long comments_id) {
+    public void commentsno(Long commentId) {
 
-        Comments commentsEntity = commentsRepository.findById(comments_id)
+        Comments commentsEntity = commentsRepository.findById(commentId)
                 .orElseThrow(NotFoundException::new);
 
         commentsRepository.delete(commentsEntity);

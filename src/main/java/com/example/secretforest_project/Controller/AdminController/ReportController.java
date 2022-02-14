@@ -25,17 +25,17 @@ public class ReportController {
     private final AdminPostService adminPostService;
 
     // 댓글 검열 - 통과
-    @PutMapping("/{commentsid}/pass")
+    @PutMapping("/{commentid}/pass")
     @ResponseStatus(HttpStatus.CREATED)
-    public void CommentsOk(@PathVariable("commentsid") Long comments_id) {
-        adminCommentsService.commentsok(comments_id);
+    public void CommentsOk(@PathVariable("commentid") Long commentId) {
+        adminCommentsService.commentsok(commentId);
     }
 
     // 댓글 검열 - 삭제
-    @DeleteMapping("/{commentsid}/elmnt")
+    @DeleteMapping("/{commentid}/elmnt")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void CommentsNo(@PathVariable("commentsid") Long comments_id) {
-        adminCommentsService.commentsno(comments_id);
+    public void CommentsNo(@PathVariable("commentid") Long commentId) {
+        adminCommentsService.commentsno(commentId);
     }
 
     // 신고된 게시물 목록
@@ -46,7 +46,7 @@ public class ReportController {
     }
 
     // 신고된 댓글 목록
-    @GetMapping("/comments")
+    @GetMapping("/comment")
     @ResponseStatus(HttpStatus.OK)
     public CommentsListResponse ShowReportComments(Pageable page) {
         return adminCommentsService.showreportcomments(page);

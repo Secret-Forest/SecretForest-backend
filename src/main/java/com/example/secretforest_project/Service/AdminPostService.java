@@ -20,9 +20,9 @@ public class AdminPostService {
     private final PostRepository postRepository;
 
     // 게시글 검열 통과
-    public void postok(Long post_id) {
+    public void postok(Long postId) {
 
-        Post postEntity = postRepository.findById(post_id)
+        Post postEntity = postRepository.findById(postId)
                 .orElseThrow(NotFoundException::new);
 
         Post build = Post.builder()
@@ -39,9 +39,9 @@ public class AdminPostService {
     }
 
     // 게시글 검열 삭제
-    public void postno(Long post_id) {
+    public void postno(Long postId) {
 
-        Post postEntity = postRepository.findById(post_id)
+        Post postEntity = postRepository.findById(postId)
                 .orElseThrow(NotFoundException::new);
 
         postRepository.delete(postEntity);
