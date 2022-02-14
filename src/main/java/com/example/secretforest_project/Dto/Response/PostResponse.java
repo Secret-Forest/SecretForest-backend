@@ -27,6 +27,6 @@ public class PostResponse {
     @NotBlank
     private String writer;
 
-    private List<CommentsPostResponse> commentsPostResponses = new ArrayList<>();
+    private List<CommentPostResponse> commentsPostResponses = new ArrayList<>();
 
 }

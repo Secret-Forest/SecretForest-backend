@@ -11,8 +11,8 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CommentsListResponse {
+public class CommentListResponse {
 
-    private List<CommentsViewResponse> commentsViewResponseList;
+    private List<CommentViewResponse> commentsViewResponseList;
 
 }

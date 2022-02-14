@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CommentsViewResponse {
+public class CommentResponse {
 
     @NotBlank
     private Long id;
@@ -23,6 +23,15 @@ public class CommentsViewResponse {
 
     @NotBlank
     private String writer;
+
+    @NotBlank
+    @Size(min = 6, max = 20)
+    private String password;
+
+    @NotBlank
+    @Size(max = 1)
+    private Integer censorship;
+
 
 
 }

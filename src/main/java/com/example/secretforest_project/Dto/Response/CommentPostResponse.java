@@ -1,4 +1,4 @@
-package com.example.secretforest_project.Dto.Request;
+package com.example.secretforest_project.Dto.Response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,10 +12,16 @@ import javax.validation.constraints.Size;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CommentsUpdateRequest {
+public class CommentPostResponse {
+
+    @NotBlank
+    private Long id;
 
     @NotBlank
     @Size(max = 500)
     private String comment;
+
+    @NotBlank
+    private String writer;
 
 }

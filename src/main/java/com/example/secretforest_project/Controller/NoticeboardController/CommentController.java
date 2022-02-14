@@ -1,6 +1,6 @@
 package com.example.secretforest_project.Controller.NoticeboardController;
 
-import com.example.secretforest_project.Dto.Request.CommentsUpdateRequest;
+import com.example.secretforest_project.Dto.Request.CommentUpdateRequest;
 import com.example.secretforest_project.Dto.Request.PasswordRequest;
 import com.example.secretforest_project.Service.CommentsService;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 @RequestMapping("/comment/{commentid}")
 @RestController
-public class CommentsController {
+public class CommentController {
 
     private final CommentsService commentsService;
 
@@ -27,7 +27,7 @@ public class CommentsController {
     @PutMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void UpdateComments (@PathVariable("commentid") Long commentId,
-                                @Valid @RequestBody CommentsUpdateRequest commentsUpdateRequest) {
+                                @Valid @RequestBody CommentUpdateRequest commentsUpdateRequest) {
         commentsService.updatecomments(commentId, commentsUpdateRequest);
     }
 

@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CommentsRequest {
+public class CommentRequest {
 
     @NotBlank
     @Size(max = 500)

@@ -1,6 +1,6 @@
 package com.example.secretforest_project.Controller.AdminController;
 
-import com.example.secretforest_project.Dto.Response.CommentsListResponse;
+import com.example.secretforest_project.Dto.Response.CommentListResponse;
 import com.example.secretforest_project.Dto.Response.PostListResponse;
 import com.example.secretforest_project.Service.AdminCommentsService;
 import com.example.secretforest_project.Service.AdminPostService;
@@ -48,7 +48,7 @@ public class ReportController {
     // 신고된 댓글 목록
     @GetMapping("/comment")
     @ResponseStatus(HttpStatus.OK)
-    public CommentsListResponse ShowReportComments(Pageable page) {
+    public CommentListResponse ShowReportComments(Pageable page) {
         return adminCommentsService.showreportcomments(page);
     }
 

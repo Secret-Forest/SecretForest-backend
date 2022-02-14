@@ -1,11 +1,11 @@
 package com.example.secretforest_project.Service;
 
-import com.example.secretforest_project.Dto.Response.CommentsPostResponse;
+import com.example.secretforest_project.Dto.Response.CommentPostResponse;
 import com.example.secretforest_project.Dto.Response.PostResponse;
 import com.example.secretforest_project.Dto.Response.PostListResponse;
 import com.example.secretforest_project.Dto.Response.PostViewResponse;
-import com.example.secretforest_project.Entity.Comments.Comments;
-import com.example.secretforest_project.Entity.Comments.CommentsRepository;
+import com.example.secretforest_project.Entity.Comments.Comment;
+import com.example.secretforest_project.Entity.Comments.CommentRepository;
 import com.example.secretforest_project.Entity.Post.Post;
 import com.example.secretforest_project.Entity.Post.PostRepository;
 import com.example.secretforest_project.Exception.NotFoundException;
@@ -22,7 +22,7 @@ import java.util.List;
 public class ShowPostService {
 
     private final PostRepository postRepository;
-    private final CommentsRepository commentsRepository;
+    private final CommentRepository commentsRepository;
 
     // 중복코드
     private PostListResponse list(Page<Post> postEntityList) {
@@ -75,12 +75,12 @@ public class ShowPostService {
         Post postEntity = postRepository.findById(postId)
                 .orElseThrow(NotFoundException::new);
 
-        List<Comments> commentsEntityList = commentsRepository.findAllByPost(postEntity);
-        List<CommentsPostResponse> commentsPostResponses = new ArrayList<>();
+        List<Comment> commentsEntityList = commentsRepository.findAllByPost(postEntity);
+        List<CommentPostResponse> commentsPostResponses = new ArrayList<>();
 
-        for (Comments commentsEntityeies : commentsEntityList) {
+        for (Comment commentsEntityeies : commentsEntityList) {
             commentsPostResponses.add(
-                    CommentsPostResponse.builder()
+                    CommentPostResponse.builder()
                             .id(commentsEntityeies.getId())
                             .writer(commentsEntityeies.getWriter())
                             .comment(commentsEntityeies.getComment())

@@ -7,9 +7,9 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface CommentsRepository extends CrudRepository<Comments, Long> {
+public interface CommentRepository extends CrudRepository<Comment, Long> {
 
-    Page<Comments> findAllByCensorshipOrderByIdDesc(Integer Censorship, Pageable page);
-    List<Comments> findAllByPost(Post id);
+    Page<Comment> findAllByCensorshipOrderByIdDesc(Integer Censorship, Pageable page);
+    List<Comment> findAllByPost(Post id);
 
 }

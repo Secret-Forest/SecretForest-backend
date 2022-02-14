@@ -1,6 +1,6 @@
 package com.example.secretforest_project.Controller.NoticeboardController;
 
-import com.example.secretforest_project.Dto.Request.CommentsRequest;
+import com.example.secretforest_project.Dto.Request.CommentRequest;
 import com.example.secretforest_project.Dto.Request.PasswordRequest;
 import com.example.secretforest_project.Dto.Request.PostRequest;
 import com.example.secretforest_project.Dto.Response.PostListResponse;
@@ -62,7 +62,7 @@ public class NoticeboardController {
     @PostMapping("comment/{postid}")
     @ResponseStatus(HttpStatus.CREATED)
     public void SeveComments(@PathVariable("postid") Long postId,
-                             @Valid @RequestBody CommentsRequest commentsRequest) {
+                             @Valid @RequestBody CommentRequest commentsRequest) {
         commentsService.sevecomments(postId, commentsRequest);
     }
 

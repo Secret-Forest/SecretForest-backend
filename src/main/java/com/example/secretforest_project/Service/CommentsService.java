@@ -1,10 +1,10 @@
 package com.example.secretforest_project.Service;
 
-import com.example.secretforest_project.Dto.Request.CommentsRequest;
-import com.example.secretforest_project.Dto.Request.CommentsUpdateRequest;
+import com.example.secretforest_project.Dto.Request.CommentRequest;
+import com.example.secretforest_project.Dto.Request.CommentUpdateRequest;
 import com.example.secretforest_project.Dto.Request.PasswordRequest;
-import com.example.secretforest_project.Entity.Comments.Comments;
-import com.example.secretforest_project.Entity.Comments.CommentsRepository;
+import com.example.secretforest_project.Entity.Comments.Comment;
+import com.example.secretforest_project.Entity.Comments.CommentRepository;
 import com.example.secretforest_project.Entity.Post.Post;
 import com.example.secretforest_project.Entity.Post.PostRepository;
 import com.example.secretforest_project.Exception.NotFoundException;
@@ -20,18 +20,18 @@ public class CommentsService {
     private final PasswordEncoder encoder;
 
     private final PostRepository postRepository;
-    private final CommentsRepository commentsRepository;
+    private final CommentRepository commentsRepository;
 
     private final MatchesPassword matchesPassword;
 
     // 댓글 저장
-    public void sevecomments(Long postId, CommentsRequest commentsRequest) {
+    public void sevecomments(Long postId, CommentRequest commentsRequest) {
 
         Post postEntity = postRepository.findById(postId)
                 .orElseThrow(NotFoundException::new);
 
         commentsRepository.save(
-                Comments.builder()
+                Comment.builder()
                         .post(postEntity)
                         .writer(commentsRequest.getWriter())
                         .comment(commentsRequest.getComment())
@@ -44,20 +44,20 @@ public class CommentsService {
 
     public void match(Long commentId, PasswordRequest passwordRequest) {
 
-        Comments commentsEntity = commentsRepository.findById(commentId)
+        Comment commentsEntity = commentsRepository.findById(commentId)
                 .orElseThrow(NotFoundException::new);
 
         matchesPassword.matchesPassword(passwordRequest.getPassword(), commentsEntity.getPassword());
     }
 
     // 댓글 수정
-    public void updatecomments(Long commentId, CommentsUpdateRequest commentsUpdateRequest) {
+    public void updatecomments(Long commentId, CommentUpdateRequest commentsUpdateRequest) {
 
-        Comments commentsEntity = commentsRepository.findById(commentId)
+        Comment commentsEntity = commentsRepository.findById(commentId)
                 .orElseThrow(NotFoundException::new);
 
         commentsRepository.save(
-                Comments.builder()
+                Comment.builder()
                         .id(commentsEntity.getId())
                         .post(commentsEntity.getPost())
                         .writer(commentsEntity.getWriter())
@@ -72,7 +72,7 @@ public class CommentsService {
     // 댓글 삭제
     public void delcomments(PasswordRequest pwdRequest, Long commentId) {
 
-        Comments commentsEntity = commentsRepository.findById(commentId)
+        Comment commentsEntity = commentsRepository.findById(commentId)
                 .orElseThrow(NotFoundException::new);
 
         matchesPassword.matchesPassword(pwdRequest.getPassword(), commentsEntity.getPassword());
@@ -84,11 +84,11 @@ public class CommentsService {
     // 댓글 신고
     public void reportcomments(Long commentId) {
 
-        Comments commentsEntity = commentsRepository.findById(commentId)
+        Comment commentsEntity = commentsRepository.findById(commentId)
                 .orElseThrow(NotFoundException::new);
 
         commentsRepository.save(
-                Comments.builder()
+                Comment.builder()
                         .id(commentsEntity.getId())
                         .post(commentsEntity.getPost())
                         .writer(commentsEntity.getWriter())

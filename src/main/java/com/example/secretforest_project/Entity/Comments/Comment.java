@@ -21,7 +21,7 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Entity
-public class Comments { // 댓글
+public class Comment { // 댓글
 
     @Id
     @Column(name = "comments_id")
