@@ -30,14 +30,14 @@ public class PostController {
 
     // 게시글 보기
     @GetMapping
-    @ResponseStatus(HttpStatus.OK) // 200 요청을 정상적으로 처리함
+    @ResponseStatus(HttpStatus.OK)
     public PostResponse ShowPost(@PathVariable("postid") Long postid) {
         return showPostService.showpost(postid);
     }
 
     // 게시글 수정
     @PutMapping
-    @ResponseStatus(HttpStatus.OK) // 200 요청을 정상적으로 처리함
+    @ResponseStatus(HttpStatus.CREATED)
     public void UpdatePost(@PathVariable("postid") Long post_id,
                            @Valid @RequestBody PostUpdateRequest postUpdateRequest) {
         postService.updatepost(post_id, postUpdateRequest);
@@ -45,7 +45,7 @@ public class PostController {
 
     // 게시글 삭제
     @DeleteMapping
-    @ResponseStatus(HttpStatus.OK) // 200 요청을 정상적으로 처리함
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void DelPost(@PathVariable("postid") Long post_id,
                         @Valid @RequestBody PasswordRequest pwdRequest) {
         postService.delpost(post_id, pwdRequest);

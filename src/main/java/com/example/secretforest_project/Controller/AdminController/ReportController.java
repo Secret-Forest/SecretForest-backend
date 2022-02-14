@@ -26,14 +26,14 @@ public class ReportController {
 
     // 댓글 검열 - 통과
     @PutMapping("/{commentsid}/pass")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.CREATED)
     public void CommentsOk(@PathVariable("commentsid") Long comments_id) {
         adminCommentsService.commentsok(comments_id);
     }
 
     // 댓글 검열 - 삭제
     @DeleteMapping("/{commentsid}/elmnt")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void CommentsNo(@PathVariable("commentsid") Long comments_id) {
         adminCommentsService.commentsno(comments_id);
     }

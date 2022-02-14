@@ -25,7 +25,7 @@ public class CommentsController {
 
     // 댓글 수정
     @PutMapping
-    @ResponseStatus(HttpStatus.OK) // 200 요청을 정상적으로 처리함
+    @ResponseStatus(HttpStatus.CREATED)
     public void UpdateComments (@PathVariable("commentsid") Long comments_id,
                                 @Valid @RequestBody CommentsUpdateRequest commentsUpdateRequest) {
         commentsService.updatecomments(comments_id, commentsUpdateRequest);
@@ -33,7 +33,7 @@ public class CommentsController {
 
     // 댓글 삭제
     @DeleteMapping
-    @ResponseStatus(HttpStatus.OK) // 200 요청을 정상적으로 처리함
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void DelComments(@PathVariable("commentsid") Long comments_id,
                             @Valid @RequestBody PasswordRequest pwdRequest) {
         commentsService.delcomments(pwdRequest, comments_id);

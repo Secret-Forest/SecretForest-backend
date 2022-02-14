@@ -23,14 +23,14 @@ public class CensorshipController {
 
     // 게시글 검열 - 통과
     @PutMapping("/{postid}/pass")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.CREATED)
     public void PostOk(@PathVariable("postid") Long post_id) {
         adminPostService.postok(post_id);
     }
 
     // 게시글 검열 - 삭제
     @DeleteMapping("/{postid}/elmnt")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void PostNo(@PathVariable("postid") Long post_id) {
         adminPostService.postno(post_id);
     }

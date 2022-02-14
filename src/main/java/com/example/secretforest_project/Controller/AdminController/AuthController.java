@@ -31,6 +31,7 @@ public class AuthController {
 
     // 토큰 재발급
     @PutMapping("/reissue")
+    @ResponseStatus(HttpStatus.CREATED)
     public JwtToken reissue(@Valid @RequestBody JwtToken jwtToken) {
         return authService.tokenRefresh(jwtToken);
     }
