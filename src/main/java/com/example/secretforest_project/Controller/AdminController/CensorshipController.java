@@ -1,6 +1,7 @@
 package com.example.secretforest_project.Controller.AdminController;
 
-import com.example.secretforest_project.Dto.Response.CensorshipPostListResponse;
+import com.example.secretforest_project.Dto.Response.PostListResponse;
+import com.example.secretforest_project.Dto.Response.PostViewResponse;
 import com.example.secretforest_project.Service.AdminPostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -38,7 +39,7 @@ public class CensorshipController {
     // 검열해야하는 게시물 목록
     @GetMapping("/board")
     @ResponseStatus(HttpStatus.OK)
-    public CensorshipPostListResponse ShowPost(Pageable page) {
+    public PostListResponse ShowPost(Pageable page) {
         return adminPostService.showpost(page);
     }
 

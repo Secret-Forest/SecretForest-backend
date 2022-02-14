@@ -1,7 +1,5 @@
 package com.example.secretforest_project.Service;
 
-import com.example.secretforest_project.Dto.Response.CensorshipPostListResponse;
-import com.example.secretforest_project.Dto.Response.CensorshipPostResponse;
 import com.example.secretforest_project.Dto.Response.PostListResponse;
 import com.example.secretforest_project.Dto.Response.PostViewResponse;
 import com.example.secretforest_project.Entity.Post.Post;
@@ -51,24 +49,24 @@ public class AdminPostService {
     }
 
     // 게시글 검열 목록
-    public CensorshipPostListResponse showpost(Pageable page) {
+    public PostListResponse showpost(Pageable page) {
 
         Page<Post> postEntityList = postRepository.findAllByCensorshipBetweenOrderByIdDesc(1,2, page);
-        List<CensorshipPostResponse> censorshipPostResponses = new ArrayList<>();
+        List<PostViewResponse> postViewResponse = new ArrayList<>();
 
         for (Post postEntity : postEntityList) {
-            censorshipPostResponses.add(
-                    CensorshipPostResponse.builder()
+            postViewResponse.add(
+                    PostViewResponse.builder()
                             .id(postEntity.getId())
-                            .censorship(postEntity.getCensorship())
                             .title(postEntity.getTitle())
+                            .content(postEntity.getContent())
                             .writer(postEntity.getWriter())
                             .build()
             );
         }
 
-        return CensorshipPostListResponse.builder()
-                .censorshipPostResponses(censorshipPostResponses)
+        return PostListResponse.builder()
+                .postViewDtoList(postViewResponse)
                 .build();
 
     }
