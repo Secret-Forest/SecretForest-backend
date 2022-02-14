@@ -74,7 +74,7 @@ public class NoticeboardController {
         postService.match(postId,passwordRequest);
     }
 
-    // 게시글 패스워도 검증
+    // 댓글 패스워도 검증
     @GetMapping("/match/{commentid}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void matchesCommentPassword(@PathVariable("commentid") Long commentId,

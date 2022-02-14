@@ -22,8 +22,4 @@ public class PostUpdateRequest {
     @Size(max = 2000)
     private String content;
 
-    @NotBlank
-    @Size(min = 6, max = 20)
-    private String password;
-
 }

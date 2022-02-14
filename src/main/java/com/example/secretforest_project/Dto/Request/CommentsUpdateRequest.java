@@ -18,8 +18,4 @@ public class CommentsUpdateRequest {
     @Size(max = 500)
     private String comment;
 
-    @NotBlank
-    @Size(min = 6, max = 20)
-    private String password;
-
 }
