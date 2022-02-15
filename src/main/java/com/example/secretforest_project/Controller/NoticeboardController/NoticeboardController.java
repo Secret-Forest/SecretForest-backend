@@ -67,7 +67,7 @@ public class NoticeboardController {
     }
 
     // 게시글 패스워도 검증
-    @GetMapping("/match/{postid}")
+    @GetMapping("/match/post/{postid}")
     @ResponseStatus(HttpStatus.OK)
     public void matchesPostPassword(@PathVariable("postid") Long postId,
                                    @RequestBody @Valid PasswordRequest passwordRequest) {
@@ -75,7 +75,7 @@ public class NoticeboardController {
     }
 
     // 댓글 패스워도 검증
-    @GetMapping("/match/{commentid}")
+    @GetMapping("/match/comment/{commentid}")
     @ResponseStatus(HttpStatus.OK)
     public void matchesCommentPassword(@PathVariable("commentid") Long commentId,
                                    @RequestBody @Valid PasswordRequest passwordRequest) {
