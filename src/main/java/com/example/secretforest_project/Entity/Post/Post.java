@@ -1,17 +1,21 @@
 package com.example.secretforest_project.Entity.Post;
 
 
+import com.example.secretforest_project.Entity.Comments.Comment;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Getter
 @Builder
@@ -39,5 +43,8 @@ public class Post { // 게시글
 
     @Column(nullable = false, length = 1)
     private Integer censorship;
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
+    private List<Comment> comments;
 
 }
