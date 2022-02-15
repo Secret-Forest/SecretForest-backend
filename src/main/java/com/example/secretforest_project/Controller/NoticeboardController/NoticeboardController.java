@@ -90,7 +90,7 @@ public class NoticeboardController {
     }
 
     // 댓글 신고
-    @PutMapping("/report/comments/{commentid}")
+    @PutMapping("/report/comment/{commentid}")
     @ResponseStatus(HttpStatus.CREATED)
     public void ReportComments (@PathVariable("commentid") Long commentId) {
         commentsService.reportcomments(commentId);
