@@ -82,6 +82,7 @@ public class AdminPostService {
                         PostViewResponse.builder()
                                 .id(postEntity.getId())
                                 .title(postEntity.getTitle())
+                                .content(postEntity.getContent())
                                 .writer(postEntity.getWriter())
                                 .build()
                 );
