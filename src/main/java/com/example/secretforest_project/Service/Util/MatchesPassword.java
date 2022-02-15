@@ -12,7 +12,7 @@ public class MatchesPassword {
     private final PasswordEncoder encoder;
 
     public void matchesPassword(String matchespassword,String password){
-        if (encoder.matches(matchespassword, password)) {
+        if (!encoder.matches(matchespassword, password)) {
             // matches(비교할 비밀번호, db에 저장되어 있는 비밀번호)
             throw new ConflictException();
         }
