@@ -5,7 +5,6 @@ import com.example.secretforest_project.Dto.Request.PostUpdateRequest;
 import com.example.secretforest_project.Dto.Request.PasswordRequest;
 import com.example.secretforest_project.Entity.Post.Post;
 import com.example.secretforest_project.Entity.Post.PostRepository;
-import com.example.secretforest_project.Exception.ConflictException;
 import com.example.secretforest_project.Exception.NotFoundException;
 import com.example.secretforest_project.Service.Util.MatchesPassword;
 import lombok.RequiredArgsConstructor;
@@ -68,7 +67,7 @@ public class PostService {
     public void delpost(Long postId, PasswordRequest pwdRequest) {
 
         Post postEntity = postRepository.findById(postId)
-                .orElseThrow(ConflictException::new);
+                .orElseThrow(NotFoundException::new);
 
         matchesPassword.matchesPassword(pwdRequest.getPassword(), postEntity.getPassword());
 
