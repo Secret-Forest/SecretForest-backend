@@ -32,7 +32,7 @@ public class ReportController {
     }
 
     // 댓글 검열 - 삭제
-    @DeleteMapping("/{commentid}/elmnt")
+    @DeleteMapping("/{commentid}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void CommentsNo(@PathVariable("commentid") Long commentId) {
         adminCommentsService.commentsno(commentId);

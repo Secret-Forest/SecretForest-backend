@@ -30,7 +30,7 @@ public class CensorshipController {
     }
 
     // 게시글 검열 - 삭제
-    @DeleteMapping("/{postid}/elmnt")
+    @DeleteMapping("/{postid}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void PostNo(@PathVariable("postid") Long postId) {
         adminPostService.postno(postId);
