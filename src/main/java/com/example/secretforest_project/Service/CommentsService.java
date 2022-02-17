@@ -18,10 +18,8 @@ import org.springframework.stereotype.Service;
 public class CommentsService {
 
     private final PasswordEncoder encoder;
-
     private final PostRepository postRepository;
     private final CommentRepository commentsRepository;
-
     private final MatchesPassword matchesPassword;
 
     // 댓글 저장

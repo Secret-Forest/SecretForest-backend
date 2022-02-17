@@ -2,6 +2,7 @@ package com.example.secretforest_project.Service;
 
 import com.example.secretforest_project.Dto.JwtToken;
 import com.example.secretforest_project.Dto.Request.AdminReqest;
+import com.example.secretforest_project.Dto.Request.PasswordRequest;
 import com.example.secretforest_project.Entity.Admin.Admin;
 import com.example.secretforest_project.Entity.Admin.AdminRepository;
 import com.example.secretforest_project.Entity.RefreshToken.RefreshToken;
@@ -20,8 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class AuthService {
 
     private final MatchesPassword matchesPassword;
-
-    private final AdminRepository accountRepository;
+    private final AdminRepository adminRepository;
     private final RefreshTokenRepository refreshTokenRepository;
 
     private final JwtTokenProvider jwtTokenProvider;
@@ -29,7 +29,7 @@ public class AuthService {
     // 로그인
     public JwtToken login (AdminReqest adminReqest) {
 
-        Admin admin = accountRepository.findByAminId(adminReqest.getAdminId())
+        Admin admin = adminRepository.findByAminId(adminReqest.getAdminId())
                 .orElseThrow(NotFoundException::new);
 
         matchesPassword.matchesPassword(adminReqest.getPassword(), admin.getPassword());

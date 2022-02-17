@@ -16,9 +16,7 @@ import org.springframework.stereotype.Service;
 public class PostService {
 
     private final PasswordEncoder encoder;
-
     private final PostRepository postRepository;
-
     private final MatchesPassword matchesPassword;
 
     // 게시글 저장
