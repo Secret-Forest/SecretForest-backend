@@ -24,3 +24,6 @@ auth:
     exp:
       access: ${JWT_ACCESS_EXP}
       refresh: ${JWT_REFRESH_EXP}
+
+cors:
+  url: ${URL}

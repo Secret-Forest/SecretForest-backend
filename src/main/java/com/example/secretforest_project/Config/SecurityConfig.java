@@ -3,6 +3,7 @@ package com.example.secretforest_project.Config;
 import com.example.secretforest_project.Jwt.FilterConfig;
 import com.example.secretforest_project.Jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -11,6 +12,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsUtils;
+
+import java.util.List;
 
 
 @Configuration
@@ -18,6 +23,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity // 시큐리티 활성화 -> 기본 스프링 필터체인에 등록
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
+    @Value("${cors.url}")
+    private String url;
     private final JwtTokenProvider jwtTokenProvider;
 
     @Bean
@@ -27,6 +34,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+        http.cors().configurationSource(request -> {
+            var cors = new CorsConfiguration();
+            cors.setAllowedOrigins(List.of(url));
+            cors.setAllowedMethods(List.of("GET","POST", "PUT", "DELETE"));
+            cors.setAllowedHeaders(List.of("*"));
+            return cors;
+        });
+
         http
                 // .disable() => 사용하지 않겠다는 것을 표시함
                 .csrf().disable() // csrf 토큰 검사를 비활성화
@@ -53,7 +69,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 
                 .anyRequest().permitAll()// 나머지 url들은(.anyRequest()) 무조건 접근 허용(.permitAll())한다.
 
-                .and().apply(new FilterConfig(jwtTokenProvider));
+                .and().apply(new FilterConfig(jwtTokenProvider))
+
+                .and().authorizeRequests()
+                .requestMatchers(CorsUtils::isPreFlightRequest).permitAll();
+
     }
 
 }
