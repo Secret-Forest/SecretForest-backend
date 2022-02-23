@@ -3,7 +3,6 @@ package com.example.secretforest_project.Config;
 import com.example.secretforest_project.Jwt.FilterConfig;
 import com.example.secretforest_project.Jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -13,15 +12,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsUtils;
-
-import java.util.List;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 
 @Configuration
 @RequiredArgsConstructor
 @EnableWebSecurity // 시큐리티 활성화 -> 기본 스프링 필터체인에 등록
-public class SecurityConfig extends WebSecurityConfigurerAdapter{
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final JwtTokenProvider jwtTokenProvider;
 
@@ -33,17 +31,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.cors().configurationSource(request -> {
-            var cors = new CorsConfiguration();
-            cors.setAllowedOrigins(List.of());
-            cors.setAllowedMethods(List.of("GET","POST", "PUT", "DELETE"));
-            cors.setAllowedHeaders(List.of("*"));
-            return cors;
-        });
         http
-                .authorizeRequests()
-                .requestMatchers(CorsUtils::isPreFlightRequest).permitAll();
-        http
+                .httpBasic().disable()
+                .cors().configurationSource(corsConfigurationSource())
+                .and()
                 // .disable() => 사용하지 않겠다는 것을 표시함
                 .csrf().disable() // csrf 토큰 검사를 비활성화
                 // csrf : 웹의 취약점을 이용하여 사용자가 자신의 의지와는 무관하게 공격자가 의도한 행위를 요청하게 하는 공격하는 행위
@@ -71,6 +62,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
                 .and().apply(new FilterConfig(jwtTokenProvider));
 
+        }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+
+        configuration.addAllowedOrigin("");
+        configuration.addAllowedHeader("*");
+        configuration.addAllowedMethod("*");
+        configuration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 
 }
